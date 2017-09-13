@@ -1,16 +1,22 @@
 {
-  "name": "surveyninja",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-scripts": "1.0.13"
-  },
+  "name": "mysurvey",
+  "version": "1.0.0",
+  "description": "a survey app to provide feedback by email. Uses auth, payment methods.",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Fabio Aiello, Waqas Alsubayee, Alan Tran, Jaya Arasalike",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "mongoose": "^4.11.11",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.2.1"
   }
 }
