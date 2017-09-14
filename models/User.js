@@ -20,9 +20,9 @@ const UserSchema = new Schema({
 				type: 		Date,
 				required: 	false
 			}
-			// comments: [{
+			// emails: [{
 			// 		type: Schema.ObjectId,
-			// 		ref : 'Comment'
+			// 		ref : 'Email'
 			// }]
 })
 

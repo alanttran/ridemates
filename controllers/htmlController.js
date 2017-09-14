@@ -9,6 +9,6 @@ router.get("/signup", (req, res) => sendHTML(res, "../public/signup.html"));
 
 router.get("/login", (req, res) => sendHTML(res, "../public/login.html"));
 
-// router.get("/list", (req, res) => sendHTML(res, "../public/list.html"));
+router.get("/request", (req, res) => sendHTML(res, "../public/request.html"));
 
 module.exports = router;

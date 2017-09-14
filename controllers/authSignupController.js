@@ -1,8 +1,14 @@
-const mongoose				= require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
-const router 	= require('express').Router(),
+//=============================================================================
+//							Authentication function
+//=============================================================================
+// checks if user is logged in
+
+const mongoose				= require('mongoose'),
+	  passportLocalMongoose = require('passport-local-mongoose'),
+	  router 				= require('express').Router(),
 	  passport				= require('passport'),
-	  User 		= require('../models/User');
+	  User 					= require('../models/User'),
+	  isLoggedIn 			= require('../js/isLoggedIn');
 
 router.post('/', (req, res) => {
 	User.findOne({"username": req.body.username})
@@ -14,6 +20,7 @@ router.post('/', (req, res) => {
 				if (err) {
 					console.log('err: ', err);
 				};
+				// TODo: replace with 'isloggedin' ++++++++++++++++++++++++++++++++
 				passport.authenticate('local')(req, res, () => {
 					res.send('Hi from the secret garden of manly pleasures')
 				});

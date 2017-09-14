@@ -16,6 +16,7 @@ const express 				= require("express"),
 
 const app = express();
 
+// Passport configuration
 app.use(expressSession({
 	secret: "AC Torino is the best team in the world",
 	resave: false,
@@ -24,6 +25,8 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
+
+// Body Parser configuration
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -55,22 +58,16 @@ mongoose.connect(db, function(error) {
 //   next();
 // });
 
-// routes
-
 // Routes
 const htmlRoutes = require("./controllers/htmlController.js");
-const authRoutes = require("./controllers/authController.js");
+const authSignupRoutes = require("./controllers/authSignupController.js");
+const authLoginRoutes = require("./controllers/authLoginController.js");
+const requestRoutes = require("./controllers/requestController.js");
 
-app.use("/", htmlRoutes)
-app.use("/signup", authRoutes)
-
-// app.get("/", (req, res) => {
-// 	res.send({ hi: "there" });
-// });
-
-// app.get('/signup', (req, res) => {
-// 	res.send('signup.html');
-// });
+app.use("/", htmlRoutes);
+app.use("/api/signup", authSignupRoutes);
+app.use("/api/login", authLoginRoutes);
+app.use("/api/request", requestRoutes);
 
 // Start the server
 app.listen(PORT, function() {
