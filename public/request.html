@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>request page</title>
+</head>
+
+<body>
+	<h1>Request to ride</h1>
+	<br>
+	<h2 id='rm-title'>Nov 22, 2016 request in San Francisco, CA</h2>
+	<hr>
+	<br>
+	<p id='rm-msg-body'>Hi there, would you like to ride with me?</p>
+
+	<button>
+		<a href="/request/yes" class='rm-btn-yes' value="Yes">Yes</a>
+	</button>
+	<button>
+		<a href="/request/no" class='rm-btn-no' value="No">No</a>
+	</button>
+	<br>
+	<hr>
+	<button action="/api/request" method="POST" id='rm-request-btn'>Send Email</button>
+
+  	<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+  	<script type="text/javascript">
+
+		$("#rm-request-btn").on("click", function(event) {
+			event.preventDefault();
+			console.log('request button pressed');
+
+			const msg = $('#rm-msg-body').text().trim();
+			const title = $('#rm-title').text().trim();
+			console.log(msg)
+
+		    $.ajax({
+		      url: "/api/request",
+		      method: "POST",
+		      data: { 
+		      		title,
+		      		msg
+		      }
+		    });
+	    });
+
+  	</script>
+
+</body>
+
+</html>
