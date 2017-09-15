@@ -60,14 +60,15 @@ mongoose.connect(db, function(error) {
 
 // Routes
 const htmlRoutes = require("./controllers/htmlController.js");
-const authSignupRoutes = require("./controllers/authSignupController.js");
-const authLoginRoutes = require("./controllers/authLoginController.js");
+// const authSignupRoutes = require("./controllers/authSignupController.js");
+const authRoutes = require("./controllers/authController.js");
 const requestRoutes = require("./controllers/requestController.js");
 
-app.use("/", htmlRoutes);
-app.use("/api/signup", authSignupRoutes);
-app.use("/api/login", authLoginRoutes);
+
+app.use("/api", authRoutes);
+// app.use("/api/login", authLoginRoutes);
 app.use("/api/request", requestRoutes);
+app.use("/", htmlRoutes);
 
 // Start the server
 app.listen(PORT, function() {
