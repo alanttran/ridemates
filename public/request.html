@@ -16,10 +16,10 @@
 	<p id='rm-msg-body'>Hi there, would you like to ride with me?</p>
 
 	<button>
-		<a href="/api/request/yes" class='rm-btn-yes' value="Yes">Yes</a>
+		<a class='rm-btn-yes' value="Yes">Yes</a>
 	</button>
 	<button>
-		<a href="/api/request/no" class='rm-btn-no' value="No">No</a>
+		<a class='rm-btn-no' value="No">No</a>
 	</button>
 	<br>
 	<hr>
@@ -32,16 +32,18 @@
 			event.preventDefault();
 			console.log('request button pressed');
 
-			const msg = $('#rm-msg-body').text().trim();
+			const body = $('#rm-msg-body').text().trim();
 			const title = $('#rm-title').text().trim();
-			console.log(msg)
+			const recipients = 'heloflyer@hotmail.com,coding.boot.camp123@gmail.com'
+			console.log(body)
 
 		    $.ajax({
 		      url: "/api/request",
 		      method: "POST",
 		      data: { 
 		      		title,
-		      		msg
+		      		body,
+		      		recipients
 		      }
 		    });
 	    });
