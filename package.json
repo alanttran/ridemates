@@ -1,7 +1,7 @@
 {
   "name": "ridemates",
   "version": "1.0.0",
-  "description": "a survey app to provide feedback by email. Uses auth, payment methods.",
+  "description": "an app to provide byciclists with friends to ride with.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,12 +13,14 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.0",
+    "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
     "material-ui": "^1.0.0-beta.10",
     "material-ui-icons": "^1.0.0-beta.10",
     "mongoose": "^4.11.11",
+    "morgan": "^1.8.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.2.1",

@@ -8,8 +8,7 @@ const mongoose				= require('mongoose'),
 	  router 				= require('express').Router(),
 	  passport				= require('passport'),
 	  Email 				= require('../models/Email'),
-	  User 					= require('../models/User'),
-	  isLoggedIn 			= require('../js/isLoggedIn'),	  
+	  User 					= require('../models/User'),	  
 	  Mailer				= require('../services/Mailer'),
 	  emailTemplate 		= require('../services/emailTemplates/rideRequestTemplate');
 
@@ -43,22 +42,38 @@ router.post('/', (req, res) => {
 	console.log('req.body: ', req.body)
 
     const email = new Email({
-        title,
-        body, 
+        title: req.body.title,
+        body: req.body.body, 
         dateSent: Date.now(),
-        recipients: recipients.split(',').map(email => ({ email: email.trim() })),
-        _user: req.user.id	
+        recipients: req.body.recipients.split(',').map(email => ({ email: email.trim() })),
+        // TODO: add user for auth ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // _user: req.user.id	
     });
 
+    console.log('\n')
+    console.log('--------------------------')
     console.log('email: ', email)
+    console.log('--------------------------')
+    console.log('\n')
 
     const mailer = new Mailer(email, emailTemplate(email));
 
-    email.save(function(error, doc) {
-        if (error) {
-            console.log(error);
-        }
-	});
+    mailer.sendMail(function (error, response) {
+			if (error) {
+			console.log('Error response received');
+			res.send(error)
+			}
+			console.log(response.statusCode);
+			console.log(response.body);
+			console.log(response.headers);
+			res.json(response)
+		})
+ // TODO: remember to save the email into the DB ++++++++++++++++++++++++++++++++++++
+ //    Email.save(function(error, doc) {
+ //        if (error) {
+ //            console.log(error);
+ //        }
+	// });
 });
 
 //=================================================

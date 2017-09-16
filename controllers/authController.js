@@ -8,19 +8,34 @@ const mongoose				= require('mongoose'),
 	  router 				= require('express').Router(),
 	  LocalStrategy 		= require('passport-local').Strategy,
 	  passport				= require('passport'),
-	  User 					= require('../models/User'),
-	  logIn 				= require('../js/isLoggedIn');
+	  User 					= require('../models/User');
 
 console.log('in authRoutes ')
 
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 // router.post('/login', passport.authenticate('local', {
-// 			successRedirect: 'https://bootcampspot-v2.com/'
-// 			// failureRedirect: '/login'
+// 			successRedirect: 'https://bootcampspot-v2.com/',
+// 			failureRedirect: '/login'
 // 		}), function (req, res) {
-router.post("/login", logIn, function (req, res) {
-				res.redirect('/')
-				console.log('post /login');
-		}
+// // router.post("/login", logIn, function (req, res) {
+// 				// res.redirect('/')
+// 				console.log('post /login');
+// 		}
+// );
+router.post(
+    "/login",
+    passport.authenticate("local", { failureRedirect: "/signup" }),
+    (req, res, next) => {
+        console.log("successfully logged in.");
+        req.session.save(err => {
+            if (err) {
+                return next(err);
+            }
+            res.redirect("/");
+        });
+    }
 );
 
 router.get('/logout', (req, res) => {
@@ -28,32 +43,33 @@ router.get('/logout', (req, res) => {
 	req.logout();
 	console.log('you are logged out');
 	// res.redirect('/index')
+	res.redirect('/')
 });
 
 router.post('/signup', (req, res) => {
 	console.log('post /signup')
-	User.findOne({"username": req.body.username})
-	.then(function(err, doc) {
-		if (!doc) {
-			console.log('not found')
-			const newUser = new User({username: req.body.username});
-			User.register(newUser, req.body.password, function(err, user) {
+	// User.findOne({"username": req.body.username})
+	// .then(function(err, doc) {
+	// 	if (!doc) {
+	// 		console.log('not found')
+	const newUser = new User({username: req.body.username});
+	User.register(newUser, req.body.password, (err, user) => {
+		if (err) {
+			console.log('err: ', err);
+			return res.send(err);
+		};
+		// TODo: replace with 'logIn' ++++++++++++++++++++++++++++++++
+		passport.authenticate('local')(req, res, () => {
+			console.log('signed up, past auth');
+			req.session.save((err) => {
 				if (err) {
-					console.log('err: ', err);
-				};
-				// TODo: replace with 'logIn' ++++++++++++++++++++++++++++++++
-				passport.authenticate('local')(req, res, () => {
-					res.send('Hi from the secret garden of manly pleasures')
-				});
-			});
-		}
-		else {
-				// TODo: send back to login ++++++++++++++++++++++++++++++++
-
-			res.send('user exists')
-			console.log('found: ', doc)
-		}
+					return next(err);
+				}
+				res.redirect('/');
+			})
+		});
 	});
+});
 
 	// .findOne({ "_id": req.params.id })
  //  // ..and populate all of the notes associated with it
@@ -69,6 +85,6 @@ router.post('/signup', (req, res) => {
  //      res.json(doc);
  //    }
  //  });
-});
+// });
 
 module.exports = router;

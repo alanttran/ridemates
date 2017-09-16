@@ -7,33 +7,15 @@ const express 				= require("express"),
 	  bodyParser 			= require("body-parser"),
 	  dotenv 				= require('dotenv').config(),
 	  passport				= require('passport'),
+	  cookieParser			= require('cookie-parser'),
 	  LocalStrategy 		= require('passport-local').Strategy,
 	  passportLocalMongoose = require('passport-local-mongoose'),
-	  expressSession		= require('express-session'),
+	  session				= require('express-session'),
 	  mongoose 				= require("mongoose"),
+	  logger 				= require('morgan'),
 	  User					= require('./models/User');
 
-
 const app = express();
-
-// Passport configuration
-app.use(expressSession({
-	secret: "AC Torino is the best team in the world",
-	resave: false,
-	saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-
-// Body Parser configuration
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-app.use(express.static('public'));
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 // Set up a default port, configure mongoose, configure our middleware
 const PORT = process.env.PORT || 4000;
@@ -42,13 +24,36 @@ const PORT = process.env.PORT || 4000;
 const db = process.env.MONGODB_URI || "mongodb://localhost/ridemate";
 
 mongoose.connect(db, function(error) {
-  if (error) {
-    console.error(error);
-  }
-  else {
-    console.log("mongoose connection is successful");
-  }
+	if (error) {
+		console.error(error);
+	}
+	else {
+		console.log("mongoose connection is successful");
+	}
 });
+
+// Body Parser configuration
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(express.static('public'));
+
+app.use(cookieParser());
+
+app.use(logger('dev'));
+
+// Passport configuration
+app.use(session({
+	secret: "AC Torino is the best team in the world",
+	resave: false,
+	saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // enable CORS
 // app.use((req, res, next) => {
@@ -60,13 +65,11 @@ mongoose.connect(db, function(error) {
 
 // Routes
 const htmlRoutes = require("./controllers/htmlController.js");
-// const authSignupRoutes = require("./controllers/authSignupController.js");
 const authRoutes = require("./controllers/authController.js");
 const requestRoutes = require("./controllers/requestController.js");
 
 
 app.use("/api", authRoutes);
-// app.use("/api/login", authLoginRoutes);
 app.use("/api/request", requestRoutes);
 app.use("/", htmlRoutes);
 
