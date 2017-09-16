@@ -1,31 +1,32 @@
 import React, { Component } from "react";
-import Button from '../../node_modules/material-ui/Button';
+import Main from "../components/main";
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import Button from 'material-ui/Button';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import IconButton from 'material-ui/IconButton';
 
 class LandingPage extends Component{
-	state={
-		text: "sss"
+	render(){
+		return(
+			<div>
+				<AppBar position="static">
+					<Toolbar>
+						<Typography type="title" color="inherit" >
+							RideMates
+						</Typography>
+						<Button color="contrast">Login</Button>
+					</Toolbar>
+				</AppBar>
+				<img src={'./images/biking.jpeg'} alt="biking"/>
+				<Main></Main>
+			</div>
+			
+		)
+		
 	}
-
-	// componentDidMount() {
- //    	this.getStuff();
- //  	}
-
- //  	getStuff = () => {
- //    // Get the passwords and store them in state
-	//     fetch('/api/stuff')
-	//       .then(res => res.json())
-	//       .then(stuff => this.setState({ stuff }));
-	//   }
-
-	render() {
-		const { stuff } = this.state;
-
-	    return (
-	      <Button raised color="primary">
-		      stuff
-		  </Button>
-	    );
-  }
 }
 
 export default LandingPage;

@@ -4,10 +4,7 @@
   "description": "an app to provide byciclists with friends to ride with.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "startServer": "node server.js",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "node server.js",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "author": "Fabio Aiello, Waqas Alsubayee, Alan Tran, Jaya Arasalike",
