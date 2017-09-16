@@ -1,11 +1,12 @@
 {
-  "name": "mysurvey",
+  "name": "ridemates",
   "version": "1.0.0",
   "description": "a survey app to provide feedback by email. Uses auth, payment methods.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "startServer": "node server.js",
+    "start": "react-scripts start"
   },
   "author": "Fabio Aiello, Waqas Alsubayee, Alan Tran, Jaya Arasalike",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.2.1",
     "react-dom": "^15.6.1",
+    "react-scripts": "^1.0.13",
     "sendgrid": "^5.2.3"
   }
 }
