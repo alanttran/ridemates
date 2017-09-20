@@ -28,6 +28,7 @@ class LandingPage extends Component{
 							RideMates
 						</Typography>
 						<Button className="rm-login-button" color="contrast">Login</Button>
+						<Button className="rm-signup-button" color="contrast">Sign Up</Button>
 					</Toolbar>
 				</AppBar>
 				<div style={coverImage} className="rm-cover-container">
