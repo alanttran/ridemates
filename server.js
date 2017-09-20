@@ -13,7 +13,8 @@ const express 				= require("express"),
 	  session				= require('express-session'),
 	  mongoose 				= require("mongoose"),
 	  logger 				= require('morgan'),
-	  User					= require('./models/User');
+	  User					= require('./models/User'),
+	  path                  = require('path');
 
 const app = express();
 
@@ -22,6 +23,7 @@ const PORT = process.env.PORT || 4000;
 
 // Connect mongoose to our database
 const db = process.env.MONGODB_URI || "mongodb://localhost/ridemate";
+//  mongodb://heroku_wdqxr1c7:u11s28d9stv360c6r6o83kt5g2@ds141454.mlab.com:41454/heroku_wdqxr1c7
 
 mongoose.connect(db, function(error) {
 	if (error) {
@@ -67,14 +69,17 @@ passport.deserializeUser(User.deserializeUser());
 // });
 
 // Routes
-const htmlRoutes = require("./controllers/htmlController.js");
-const authRoutes = require("./controllers/authController.js");
-const requestRoutes = require("./controllers/requestController.js");
+//const htmlRoutes = require("./controllers/htmlController.js");
+//const authRoutes = require("./controllers/authController.js");
+//const requestRoutes = require("./controllers/requestController.js");
 
 
-app.use("/api", authRoutes);
-app.use("/api/request", requestRoutes);
-app.use("/", htmlRoutes);
+//app.use("/api", authRoutes);
+//app.use("/api/request", requestRoutes);
+
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+});
 
 // Start the server
 app.listen(PORT, function() {
