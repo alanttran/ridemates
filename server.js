@@ -32,6 +32,9 @@ mongoose.connect(db, function(error) {
 	}
 });
 
+// Priority serve any static files.
+app.use(express.static(path.resolve(__dirname, './client/build')));
+
 // Body Parser configuration
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
