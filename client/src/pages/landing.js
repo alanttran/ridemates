@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import Main from "../components/main";
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
+
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Grid from 'material-ui/Grid';
@@ -22,15 +20,7 @@ class LandingPage extends Component{
 	render(){
 		return(
 			<div>
-				<AppBar position="static">
-					<Toolbar>
-						<Typography className="rm-flex-auto" type="title" color="inherit" >
-							RideMates
-						</Typography>
-						<Button className="rm-login-button" color="contrast">Login</Button>
-						<Button className="rm-signup-button" color="contrast">Sign Up</Button>
-					</Toolbar>
-				</AppBar>
+				
 				<div style={coverImage} className="rm-cover-container">
 					<Typography className="rm-cover-title" type="display3" >
 							Find friends to ride with!
