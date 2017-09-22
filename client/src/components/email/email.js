@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import TextField from 'material-ui/TextField';
 import Input from 'material-ui/Input';
 import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
+import Card, { CardActions, CardContent, CardHeader, CardTitle, CardText } from 'material-ui/Card';
+
 
 const styles = theme => ({
   container: {
@@ -13,11 +15,15 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: 230,
   },
   input: {
     margin: theme.spacing.unit,
-    width: 345,
+    width: 230,
+  },
+  card: {
+    maxWidth: 340,
+    marginBottom: 10,
   },
 });
 
@@ -25,28 +31,49 @@ function DateAndTimePickers(props) {
   const { classes } = props;
 
   return (
-    <form className={classes.container} noValidate>
+    <div>
+    <Card className={classes.card}>
+    <CardContent>
+    
+      
     <Input
-      value="Hello! Would you like to join me on a bike ride on "
+      value="Hello! Would you like to join me on a bike ride at {this.props.where} on {this.props.when} "
+      multiline
       className={classes.input}
       disabled
       inputProps={{
         'aria-label': 'Description',
       }}
-      />
+      /> 
+      
+        
       <TextField
-        id="datetime-local"
-        label="Select date and time"
-        step="300"
-        type="datetime-local"
-        defaultValue=" 2017-05-24T10:30"
+        id="time"
+        label="At this time"
+        type="time"
+        defaultValue="07:30"
         className={classes.textField}
         InputLabelProps={{
           shrink: true,
         }}
       />
+
+      <TextField
+          label="Address of the meeting place"
+          placeholder="Placeholder"
+          multiline
+          className={classes.textField}
+          margin="normal"
+        />
+      </CardContent>
+      
+      <CardActions>
       <Button raised color="primary" className={classes.button} id="emailButton">Message</Button>
-    </form>
+      </CardActions>
+    
+    </Card>
+
+    </div>  
   );
 }
 
