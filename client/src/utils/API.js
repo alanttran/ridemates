@@ -13,8 +13,11 @@ const API = {
    createUser: function({ username, password }) {
    return axios.post("/api/signup", { username, password });
    },
+   createUserProfile: function(profile) {
+   return axios.post("/api/signupForm", profile);
+   },
    logoutUser: function() {
-   return axios.post("/api/signup");
+   return axios.post("/api/logout");
    },
    loginUser: function({ username, password }) {
    return axios.post("/api/login", { username, password });
