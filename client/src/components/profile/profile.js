@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import Button from 'material-ui/Button';
+import API from '../../utils/API';
 
 import TextField from 'material-ui/TextField';
 import { indigo, pink } from 'material-ui/colors';
@@ -54,11 +55,31 @@ class Profile extends Component {
     state: '',
     zipcode: '',
     email: '',
-    phonenum: '',
+    phonenum: ''
   };
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
+  };
+
+  submitChange = event => {
+    console.log('in signup submitchange')
+    event.preventDefault();
+    console.log('state: ', this.state);
+
+    API.createUserProfile(this.state);
+
+    this.setState = {
+      firstname: '',
+      lastname: '',
+      address1: '',
+      address2: '',
+      city: '',
+      state: '',
+      zipcode: '',
+      email: '',
+      phonenum: ''
+    };
   };
 
   render() {
@@ -74,7 +95,8 @@ class Profile extends Component {
           
           <TextField
 	          required
-	          id="firstname"
+            id="firstname"
+	          name="firstname"
 	          label="Firstname"
 	          className={classes.textField}
           	  value={this.state.firstname}
@@ -86,7 +108,8 @@ class Profile extends Component {
           />
           <TextField
 	          required
-	          id="lastname"
+            id="lastname"
+	          name="lastname"
 	          label="Lastname"
 	          className={classes.textField}
           	  value={this.state.lastname}
@@ -97,7 +120,8 @@ class Profile extends Component {
           />
           <TextField
 	          required
-	          id="address-1"
+            id="address-1"
+	          name="address-1"
 	          label="Address"
 	          className={classes.textField}
           	  value={this.state.address1}
@@ -108,7 +132,8 @@ class Profile extends Component {
           />
           <TextField
 	          required
-	          id="address-2"
+            id="address-2"
+	          name="address-2"
 	          label="Address"
 	          className={classes.textField}
           	  value={this.state.address2}
@@ -118,7 +143,8 @@ class Profile extends Component {
           />
           <TextField
 	          required
-	          id="city"
+            id="city"
+	          name="city"
 	          label="City"
 	          className={classes.textField}
           	  value={this.state.city}
@@ -129,7 +155,8 @@ class Profile extends Component {
           />
           <TextField
 	          required
-	          id="state"
+            id="state"
+	          name="state"
 	          label="State"
 	          className={classes.textField}
           	  value={this.state.state}
@@ -140,7 +167,8 @@ class Profile extends Component {
           />
           <TextField
 	          required
-	          id="zipcode"
+            id="zipcode"
+	          name="zipcode"
 	          label="Zipcode"
 	          className={classes.textField}
           	  value={this.state.zipcode}
@@ -151,7 +179,8 @@ class Profile extends Component {
           />
           <TextField
 	          required
-	          id="email"
+            id="email"
+	          name="email"
 	          label="Email"
 	          className={classes.textField}
           	  value={this.state.email}
@@ -162,7 +191,8 @@ class Profile extends Component {
           />
           <TextField
 	          required
-	          id="phonenum"
+            id="phonenum"
+	          name="phonenum"
 	          label="Phone Number"
 	          className={classes.textField}
           	  value={this.state.phonenum}
@@ -174,7 +204,11 @@ class Profile extends Component {
         </CardContent>
 
         <CardActions>
-          <Button raised color="primary" className={classes.button}>Submit</Button>
+          <Button raised  color="primary" 
+                          className={classes.button}
+                          onClick={this.submitChange}
+                          >Submit
+          </Button>
         </CardActions>
       </Card>
     </div>
