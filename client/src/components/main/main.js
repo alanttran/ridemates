@@ -53,12 +53,21 @@ class Main extends Component {
   //const bull = <span className={classes.bullet}>•</span>;
 
   state = {
+    test: '',
     where: '',
     when: '',
     biketype: '',
-    hardness: '',
+    hardness: ''
 
   };
+
+  componentDidMount(){
+    fetch('/api/test')
+      .then(res => res.json())
+      .then(test => this.setState({ test }));
+  }
+
+
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
@@ -70,7 +79,7 @@ class Main extends Component {
     <div>
       <Card className={classes.card}>
       	<CardHeader style={styles.primaryColor} className={classes.title}
-			title = "Search"
+			title = {this.state.test}
         />
 
         <CardContent>
