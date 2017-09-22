@@ -1,7 +1,7 @@
 //=============================================================================
-//							Request Controller
+//							Results Controller
 //=============================================================================
-// handles the request for a ride
+// handles all routes in the results page
 
 const _ 					= require('lodash'),
 	  Path					= require('path-parser'),
@@ -28,7 +28,7 @@ const isLoggedIn = function (req, res, next) {
 	res.redirect('/login');
 }
 
-// for PROD: look into the following:+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// for PROD: look into the following:
 // const Email = mongoose.model('Survey');
 
 //=================================================

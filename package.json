@@ -4,22 +4,36 @@
   "description": "an app to provide byciclists with friends to ride with.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
+    "webhookcommented": "lt -p 4000 -s waqasspecialwithalanandjaya",
+    "webhook": "forever sendgrid_webhook.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "dev": "concurrently --kill-others \"npm run start\" \"npm run start-server\" \"npm run webhook\"",
+    "mydev": "concurrently --kill-others \"npm run start-server\" \"npm run webhook\"",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "start-server": "nodemon server.js"
   },
   "author": "Fabio Aiello, Waqas Alsubayee, Alan Tran, Jaya Arasalike",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.0",
+    "concurrently": "^3.5.0",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
+    "forever": "^0.15.3",
+    "localtunnel": "^1.8.3",
+    "lodash": "^4.17.4",
     "mongoose": "^4.11.11",
     "morgan": "^1.8.2",
+    "ngrok": "^2.2.22",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.2.1",
+    "path-parser": "^2.0.2",
     "sendgrid": "^5.2.3"
   },
   "proxy": "http://localhost:4000"
