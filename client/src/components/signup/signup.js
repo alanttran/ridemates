@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import Button from 'material-ui/Button';
+import API from '../../utils/API';
 
 import TextField from 'material-ui/TextField';
 import { indigo, pink } from 'material-ui/colors';
@@ -43,16 +44,34 @@ const styles = theme => ({
 
 class Signup extends Component {
 	state = {
-    username: 'Cat in the Hat',
-    password: 'Cat',
-    confirmpassword: 'Cat',
-    
+    username: 'Bat in the Hat',
+    password: 'Bat',
+    confirmpassword: 'Bat'
   };
 
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,
     });
+  };
+
+  submitChange = event => {
+    console.log('in signup submitchange')
+    event.preventDefault();
+    const username = this.state.username;
+    const password = this.state.password;
+    console.log('name: ', username);
+    console.log('password: ', password);
+
+    API.createUser({  username, 
+                      password
+    });
+
+    this.setState({
+              username: '',
+              password: '',
+              confirmpassword: ''
+    })
   };
 
   render() {
@@ -69,7 +88,8 @@ class Signup extends Component {
           
           <TextField
 	          required
-	          id="signup_username"
+            id="signup_username"
+	          name="username"
 	          label="Username"
 	          className={classes.textField}
           	  value={this.state.username}
@@ -79,7 +99,8 @@ class Signup extends Component {
           />
           <TextField
 	          required
-	          id="sgnup_password"
+	          id="signup_password"
+            name="password"
 	          label="Password"
 	          className={classes.textField}
           	  value={this.state.password}
@@ -100,7 +121,11 @@ class Signup extends Component {
         </CardContent>
 
         <CardActions>
-          <Button raised color="primary" className={classes.button}>Sign Up</Button>
+          <Button raised color="primary" 
+                  className={classes.button}
+                  onClick={this.submitChange}
+                  >Sign Up
+          </Button>
         </CardActions>
       </Card>
     </div>
