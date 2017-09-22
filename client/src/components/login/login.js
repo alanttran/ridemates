@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import Button from 'material-ui/Button';
+import API from '../../utils/API';
 
 import TextField from 'material-ui/TextField';
 import { indigo, pink } from 'material-ui/colors';
@@ -55,6 +56,24 @@ class Login extends Component {
     });
   };
 
+  submitChange = event => {
+    console.log('in login submitchange')
+    event.preventDefault();
+    const username = this.state.username;
+    const password = this.state.password;
+    console.log('name: ', username);
+    console.log('password: ', password);
+
+    API.loginUser({  username, 
+                      password
+    });
+
+    this.setState({
+              username: '',
+              password: ''
+    })
+  };
+
   render() {
    const { classes } = this.props;
   
@@ -70,6 +89,7 @@ class Login extends Component {
           <TextField
 	          required
 	          id="login_username"
+            name="username"
 	          label="Username"
 	          className={classes.textField}
           	  value={this.state.username}
@@ -80,6 +100,7 @@ class Login extends Component {
           <TextField
 	          required
 	          id="login_password"
+            name="password"
 	          label="Password"
 	          className={classes.textField}
           	  value={this.state.password}
@@ -90,7 +111,11 @@ class Login extends Component {
         </CardContent>
 
         <CardActions>
-          <Button raised color="primary" className={classes.button}>Log In</Button>
+          <Button raised color="primary" 
+                  className={classes.button}
+                  onClick={this.submitChange}
+                  >Log In
+          </Button>
         </CardActions>
       </Card>
     </div>

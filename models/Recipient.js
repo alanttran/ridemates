@@ -12,7 +12,8 @@ const RecipientSchema = new Schema({
 			responded: {
 					type: Boolean,
 					default: false
-			}
+			},
+			responseType: String
 })
 
 // RecipientSchema.plugin(passportLocalMongoose);
