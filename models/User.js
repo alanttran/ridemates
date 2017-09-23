@@ -9,9 +9,19 @@ const Schema				= mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = new Schema({
-			username: String,
-			password: String,
-			date: 	{
+			username: 	String,
+			password: 	String,
+			firstname: 	String,
+			lasstname: 	String,
+			address1: 	String,
+			address2: 	String,
+			city: 		String,
+			state: 		String,
+			zipcode: 	Number,
+			email: 		String,
+			phonenum: 	Number,
+			radius: 	Number,
+			dateCreated: {
 				type: 		Date,
 				required: 	false
 			}

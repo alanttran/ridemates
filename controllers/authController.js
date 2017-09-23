@@ -10,8 +10,6 @@ const mongoose				= require('mongoose'),
 	  passport				= require('passport'),
 	  User 					= require('../models/User');
 
-console.log('in authRoutes ')
-
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -38,7 +36,29 @@ router.post('/signup', (req, res) => {
 
 router.post('/signupForm', (req, res) => {
 	console.log('post /signupForm')
-	console.log('req.body: ', req.body)
+	console.log('req.body: ', req.user);
+	User.findOneAndUpdate({_id: req.user.id}, 
+                          { $set: { firstname: 	req.body.firstname,
+                          			lastname: 	req.body.lastname,
+                          			address1: 	req.body.address1,
+                          			address2: 	req.body.address2,
+                          			city	: 	req.body.city,
+                          			state 	: 	req.body.state,
+                          			zipcode : 	req.body.zipcode,
+                          			phonenum: 	req.body.phonenum,
+                          			radius	: 	req.body.radius
+                          		   } 
+                          }, 
+                          function(error, user) {
+        if (error) {
+          res.send(error);
+        }
+        else {
+            console.log('past findOneAndUpdate')
+            console.log('doc: ', doc)
+            res.send(200)
+        };
+    }); 
 	// const newUser = new User({username: req.body.username});
 	// User.register(newUser, req.body.password, (err, user) => {
 	// 	if (err) {
