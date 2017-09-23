@@ -11,17 +11,24 @@ const queryFix = "&q=";
 const API = {
 // Saves a new user to the db
    createUser: function({ username, password }) {
-   return axios.post("/api/signup", { username, password });
+      return axios.post("/api/signup", { username, password });
    },
    createUserProfile: function(profile) {
-   return axios.post("/api/signupForm", profile);
+      return axios.post("/api/signupForm", profile);
    },
    logoutUser: function() {
-   return axios.post("/api/logout");
+      return axios.post("/api/logout");
    },
    loginUser: function({ username, password }) {
-   return axios.post("/api/login", { username, password });
+      return axios.post("/api/login", { username, password });
+   },
+   request: function(when, where, biketype, hardness) {
+      return axios.post("/api/request", { when, where, biketype, hardness });
+   },
+   results: function() {
+      return axios.post("/api/results");
    }
+
 };
 
 // const API = {

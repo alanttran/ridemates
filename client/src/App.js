@@ -20,6 +20,7 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 
 class App extends Component {
+
   render() {
     return (
 
@@ -39,7 +40,7 @@ class App extends Component {
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={SignupPage} />
             <Route exact path="/profile" component={ProfilePage} />
-            <Route exact path="/results" component={ResultsPage} />
+            <Route exact path="/results/:where/:when" component={ResultsPage} />
         </div>
       </Router> 
     </div>

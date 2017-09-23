@@ -5,11 +5,13 @@ import Email from '../components/email';
 import './results.css';
 
 class ResultsPage extends Component{
-	render(){
+	render() {
+		console.log(this.props);
 		return(
 			<div>
-			<Results></Results>
-			<Email></Email>
+			<Results where = {this.props.match.params.where} when = {this.props.match.params.when}></Results>
+			
+
 			</div>
 			
 		)

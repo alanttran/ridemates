@@ -10,6 +10,8 @@ import { withTheme } from 'material-ui/styles';
 import Input, { InputLabel } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import Select from 'material-ui/Select';
+import API from '../../utils/API';
+import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 
 const primary = indigo[500]; // #F44336
 const accent = pink['A200']; // #E040FB
@@ -61,12 +63,31 @@ class Main extends Component {
 
   };
 
-  componentDidMount(){
-    fetch('/api/test')
-      .then(res => res.json())
-      .then(test => this.setState({ test }));
-  }
+    // componentDidMount(){
+    //   fetch('/api/test')
+    //     .then(res => res.json())
+    //     .then(test => this.setState({ test }));
+    // }
 
+  submitChange = event => {
+    event.preventDefault();
+    // sessionStorage.setItem("where":where);
+    // sessionStorage.setItem("when":when);
+    // sessionStorage.setItem("biketype":biketype);
+    // sessionStorage.setItem("hardness":hardness);
+
+    API.request().then( (res) => {
+
+      //window.location = res.request.responseURL;
+    });
+
+    this.setState({
+      where: '',
+      when: '',
+      biketype: '',
+      hardness: ''
+    })
+  };
 
 
   handleChange = name => event => {
@@ -78,12 +99,8 @@ class Main extends Component {
   return (
     <div>
       <Card className={classes.card}>
-      	<CardHeader style={styles.primaryColor} className={classes.title}
-			title = {this.state.test}
-        />
-
+      	<CardHeader style={styles.primaryColor} className={classes.title} title = {this.state.test} />
         <CardContent>
-          
           <TextField
 	          required
 	          id="where-id"
@@ -139,7 +156,9 @@ class Main extends Component {
         </CardContent>
 
         <CardActions>
-          <Button raised color="primary" className={classes.button}>Submit</Button>
+          <Link to="/results/where/when">
+            button
+          </Link>
         </CardActions>
       </Card>
     </div>
