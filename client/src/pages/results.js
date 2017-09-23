@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Results from '../components/results';
-import Email from '../components/email';
+
 
 import './results.css';
 

@@ -157,7 +157,7 @@ class Main extends Component {
 
         <CardActions>
           <Link to="/results/where/when">
-            button
+            <Button Raised onClick={this.submitChange} >Submit</Button>
           </Link>
         </CardActions>
       </Card>
