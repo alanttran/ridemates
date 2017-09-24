@@ -3,18 +3,16 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import Button from 'material-ui/Button';
+import { MenuItem } from 'material-ui/Menu';
 
 import TextField from 'material-ui/TextField';
-import { indigo, pink } from 'material-ui/colors';
-import { withTheme } from 'material-ui/styles';
+import { indigo} from 'material-ui/colors';
 import Input, { InputLabel } from 'material-ui/Input';
-import { FormControl, FormHelperText } from 'material-ui/Form';
+import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 import API from '../../utils/API';
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 
-const primary = indigo[500]; // #F44336
-const accent = pink['A200']; // #E040FB
 const primaryColor = "#F44336";
 
 const styles = theme => ({
@@ -131,10 +129,12 @@ class Main extends Component {
             onChange={this.handleChange('biketype')}
             input={<Input id="bike-type-simple" />}
           >
-            <option value="" />
-            <option value={'Mountain Bike'}>Mountain Bike</option>
-            <option value={'Road Bike'}>Road Bike</option>
-            <option value={'Hybrid'}>Hybrid</option>
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value="Mountain Bike">Mountain Bike</MenuItem>
+            <MenuItem value="Road Bike">Road Bike</MenuItem>
+            <MenuItem value="Hybrid">Hybrid</MenuItem>
           </Select>
         </FormControl>
 
@@ -147,17 +147,18 @@ class Main extends Component {
             onChange={this.handleChange('hardness')}
             input={<Input id="hardness-simple" />}
           >
-            <option value="" />
-            <option value={'Easy (15 - 25 miles)'}>Easy (15 - 25 miles)</option>
-            <option value={'Intermediate (25 - 45 miles)'}>Intermediate (25 - 45 miles)</option>
-            <option value={'Hard (Above 50 miles)'}>Hard (Above 50 miles)</option>
+            <MenuItem value=""><em>None</em>
+            </MenuItem>
+            <MenuItem value='Easy (15 - 25 miles)'>Easy (15 - 25 miles)</MenuItem>
+            <MenuItem value='Intermediate (25 - 45 miles)'>Intermediate (25 - 45 miles)</MenuItem>
+            <MenuItem value='Hard (Above 50 miles)'>Hard (Above 50 miles)</MenuItem>
           </Select>
         </FormControl>
         </CardContent>
 
         <CardActions>
-          <Link to="/results/where/when">
-            <Button Raised onClick={this.submitChange} >Submit</Button>
+          <Link to="/results">
+            <Button raised color="primary" onClick={this.submitChange} >Submit</Button>
           </Link>
         </CardActions>
       </Card>

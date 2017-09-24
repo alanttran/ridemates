@@ -19,3 +19,11 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.rm-appbar-link, .rm-appbar-title-link{
+	text-decoration: none;
+}
+
+.rm-appbar-title-link{
+	color: white;
+}

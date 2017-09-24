@@ -5,7 +5,7 @@ import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-
 import Checkbox from 'material-ui/Checkbox';
 import Avatar from 'material-ui/Avatar';
 import Button from 'material-ui/Button';
-import { FormGroup, FormControlLabel } from 'material-ui/Form';
+import {FormControlLabel } from 'material-ui/Form';
 import Input from 'material-ui/Input';
 import TextField from 'material-ui/TextField';
 import Card, { CardActions, CardContent, CardHeader, CardTitle, CardText } from 'material-ui/Card';
