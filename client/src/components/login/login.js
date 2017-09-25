@@ -2,9 +2,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import API from '../../utils/API';
+
+import './login.css';
 
 import TextField from 'material-ui/TextField';
 import { indigo } from 'material-ui/colors';
@@ -31,9 +32,6 @@ const styles = theme => ({
     marginBottom: 12,
     color: theme.palette.text.secondary,
 
-  },
-  button: {
-    margin: theme.spacing.unit,
   },
   primaryColor: {
       background: primaryColor
@@ -77,45 +75,37 @@ class Login extends Component {
   
   return (
     <div>
-      <Card className={classes.card}>
-      	<CardHeader style={styles.primaryColor} className={classes.title}
-			title = "Log In"
-        />
-
-        <CardContent>
-          
-          <TextField
-	          required
-	          id="login_username"
-            name="username"
-	          label="Username"
-	          className={classes.textField}
-          	  value={this.state.username}
-              onChange={this.handleChange('username')}	          
-	          placeholder="Username"          
-	          margin="normal"
-          />
-          <TextField
-	          required
-	          id="login_password"
-            name="password"
-	          label="Password"
-	          className={classes.textField}
-          	  value={this.state.password}
-          	  onChange={this.handleChange('password')}
-	          placeholder="Password"	          
-	          margin="normal"
-          />
-        </CardContent>
-
-        <CardActions>
-          <Button raised color="primary" 
-                  className={classes.button}
-                  onClick={this.submitChange}
-                  >Log In
-          </Button>
-        </CardActions>
-      </Card>
+          <div className="rm-signup-login-container">
+            <img src="./images/biker-01.png"/><br/><br/>
+            <TextField
+  	          required
+  	          id="login_username"
+              name="username"
+  	          label="Username"
+  	          className={classes.textField}
+            	  value={this.state.username}
+                onChange={this.handleChange('username')}	          
+  	          placeholder="Username"          
+  	          margin="normal"
+            />
+            <TextField
+  	          required
+  	          id="login_password"
+              type="password"
+              name="password"
+  	          label="Password"
+  	          className={classes.textField}
+            	  value={this.state.password}
+            	  onChange={this.handleChange('password')}
+  	          placeholder="Password"	          
+  	          margin="normal"
+            /><br/><br/>
+            <Button raised color="primary" 
+                    className={classes.button}
+                    onClick={this.submitChange}
+                    >Log In
+            </Button>
+          </div>
     </div>
   );
 }

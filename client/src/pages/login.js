@@ -7,7 +7,7 @@ class LoginPage extends Component{
 	render(){
 		return(
 			
-			<Login ></Login>
+			<Login></Login>
 			
 		)
 		

@@ -16,8 +16,9 @@
 }
 
 .rm-cover-container > .rm-cover-title{
-	color: white;
-	text-shadow: 3px 3px gray;
+	margin-bottom: 100px;
+	margin-top: -50px;
+
 }
 
 .rm-landing-page-items{
@@ -31,3 +32,13 @@
 	text-align: center;
 }
 
+.rm-landing-page-item-container{
+	background-color: #f7f6f6;
+	padding-bottom: 30px;
+	
+}
+
+.rm-landing-page-item-contents{
+	max-width: 80%;
+	margin: 0 auto;
+}

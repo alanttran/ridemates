@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import API from '../../utils/API';
-
+import './signup.css';
 import TextField from 'material-ui/TextField';
 import { indigo } from 'material-ui/colors';
 const primaryColor = "#F44336";
+
+
 
 const styles = theme => ({
   card: {
@@ -29,9 +30,6 @@ const styles = theme => ({
     marginBottom: 12,
     color: theme.palette.text.secondary,
 
-  },
-  button: {
-    margin: theme.spacing.unit,
   },
   primaryColor: {
       background: primaryColor
@@ -75,13 +73,8 @@ class Signup extends Component {
   
   return (
     <div>
-      <Card className={classes.card}>
-      	<CardHeader style={styles.primaryColor} className={classes.title}
-			title = "Sign Up"
-        />
-
-        <CardContent>
-          
+          <div className="rm-signup-login-container">
+          <img src="./images/biker-02.png"/><br/><br/>
           <TextField
 	          required
             id="signup_username"
@@ -96,6 +89,7 @@ class Signup extends Component {
           <TextField
 	          required
 	          id="signup_password"
+            type="password"
             name="password"
 	          label="Password"
 	          className={classes.textField}
@@ -107,23 +101,20 @@ class Signup extends Component {
           <TextField
 	          required
 	          id="signup_password"
+            type="password"
 	          label="Confirm Password"
 	          className={classes.textField}
           	  value={this.state.confirmpassword}
           	  onChange={this.handleChange('confirmpassword')}
 	          placeholder="Confirm Password"
 	          margin="normal"
-          />
-        </CardContent>
-
-        <CardActions>
+          /><br/><br/>
           <Button raised color="primary" 
                   className={classes.button}
                   onClick={this.submitChange}
                   >Sign Up
           </Button>
-        </CardActions>
-      </Card>
+          </div>
     </div>
   );
 }
