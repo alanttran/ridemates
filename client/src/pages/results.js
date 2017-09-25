@@ -9,7 +9,7 @@ class ResultsPage extends Component{
 		console.log(this.props);
 		return(
 			<div>
-			<Results where = {this.props.match.params.where} when = {this.props.match.params.when}></Results>
+			<Results where = {this.props.match.params.where  } when = { this.props.match.params.when } matchedPeople = { this.props.matchedPeople }></Results>
 			
 
 			</div>
