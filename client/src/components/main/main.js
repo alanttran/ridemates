@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import { MenuItem } from 'material-ui/Menu';
 
@@ -12,6 +12,8 @@ import { FormControl } from 'material-ui/Form';
 import Select from 'material-ui/Select';
 import API from '../../utils/API';
 import { BrowserRouter as Link } from "react-router-dom";
+
+import './main.css'
 
 const primaryColor = "#F44336";
 
@@ -36,16 +38,12 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
 
   },
-  button: {
-    margin: theme.spacing.unit,
-  },
   primaryColor: {
       background: primaryColor
    },
    formControl: {
-    margin: theme.spacing.unit,
     minWidth: 150,
-  },
+  }
 });
 
 class Main extends Component {
@@ -96,58 +94,69 @@ class Main extends Component {
   return (
     <div>
       <Card className={classes.card}>
-      	<CardHeader style={styles.primaryColor} className={classes.title} title = "Title" />
         <CardContent>
-          <TextField
-	          required
-	          id="where-id"
-            name="where"
-            label="Where"
-	          className={classes.textField}
-          	  value={this.state.where}
-          	  onChange={this.handleChange('where')}       
-	          placeholder="Where"
-	          margin="normal"
-          />
-          <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="bike-type-simple">Type of Biking</InputLabel>
-          <Select
-          	id="bike-type"
-            name='bikeType'
-            value={this.state.biketype}
-            onChange={this.handleChange('biketype')}
-            input={<Input id="bike-type-simple" />}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="Mountain Bike">Mountain Bike</MenuItem>
-            <MenuItem value="Road Bike">Road Bike</MenuItem>
-            <MenuItem value="Hybrid">Hybrid</MenuItem>
-          </Select>
-        </FormControl>
-
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="age-simple">Level of Difficulty</InputLabel>
-          <Select
-          	id ="difficulty"
-            name="difficulty"
-            value={this.state.difficulty}
-            onChange={this.handleChange('difficulty')}
-            input={<Input id="difficulty-simple" />}
-          >
-            <MenuItem value=""><em>None</em>
-            </MenuItem>
-            <MenuItem value='Easy (15 - 25 miles)'>Easy (15 - 25 miles)</MenuItem>
-            <MenuItem value='Intermediate (25 - 45 miles)'>Intermediate (25 - 45 miles)</MenuItem>
-            <MenuItem value='Hard (Above 50 miles)'>Hard (Above 50 miles)</MenuItem>
-          </Select>
-        </FormControl>
+            <TextField
+  	          required
+  	          id="where-id"
+  	          label="Where"
+  	          className={classes.textField}
+            	  value={this.state.where}
+            	  onChange={this.handleChange('where')}       
+  	          placeholder="Destination"
+  	          margin="none"
+              fullWidth
+            />
+            
+            <TextField
+  	          required
+  	          id="when-id"
+  	          label="When"
+  	          className={classes.textField}
+            	  value={this.state.when}
+            	  onChange={this.handleChange('when')}
+  	          placeholder="When"
+              margin="normal"
+              fullWidth
+            /><br/><br/>
+            <FormControl className={classes.formControl} margin="none">
+            <InputLabel htmlFor="bike-type-simple">Type of Biking</InputLabel>
+            <Select
+            	id ="bike-type"
+              fullWidth
+              value={this.state.biketype}
+              onChange={this.handleChange('biketype')}
+              input={<Input id="bike-type-simple" />}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value="Mountain Bike">Mountain Bike</MenuItem>
+              <MenuItem value="Road Bike">Road Bike</MenuItem>
+              <MenuItem value="Hybrid">Hybrid</MenuItem>
+            </Select>
+            </FormControl><br/><br/>
+            <FormControl className={classes.formControl} margin="none">
+            <InputLabel htmlFor="age-simple">Level of Difficulty</InputLabel>
+            <Select
+            	id ="hardness"
+              fullWidth
+              value={this.state.hardness}
+              onChange={this.handleChange('hardness')}
+              input={<Input id="hardness-simple" />}
+            >
+              <MenuItem value=""><em>None</em>
+              </MenuItem>
+              <MenuItem value='Easy (15 - 25 miles)'>Easy (15 - 25 miles)</MenuItem>
+              <MenuItem value='Intermediate (25 - 45 miles)'>Intermediate (25 - 45 miles)</MenuItem>
+              <MenuItem value='Hard (Above 50 miles)'>Hard (Above 50 miles)</MenuItem>
+            </Select>
+            </FormControl>
+>>>>>>> d9c0d46d297ae6af2bebaf20f3a71ecd441b2f26
         </CardContent>
 
         <CardActions>
           <Link to="/results">
-            <Button raised color="primary" onClick={this.submitChange} >Submit</Button>
+            <Button raised color="primary" className="rm-main-button" onClick={this.submitChange} >Find Mates!</Button>
           </Link>
         </CardActions>
       </Card>
