@@ -25,6 +25,8 @@
     "express": "^4.15.4",
     "express-session": "^1.15.5",
     "forever": "^0.15.3",
+    "geocoder": "^0.2.3",
+    "haversine": "^1.0.2",
     "localtunnel": "^1.8.3",
     "lodash": "^4.17.4",
     "mongoose": "^4.11.11",
@@ -34,6 +36,7 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.2.1",
     "path-parser": "^2.0.2",
+    "request": "^2.82.0",
     "sendgrid": "^5.2.3"
   },
   "proxy": "http://localhost:4000"

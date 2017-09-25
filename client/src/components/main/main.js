@@ -92,38 +92,38 @@ class Main extends Component {
   };
 
   render() {
-  	const classes = this.props.classes;
+    const classes = this.props.classes;
   return (
     <div>
       <Card className={classes.card}>
         <CardContent>
             <TextField
-  	          required
-  	          id="where-id"
-  	          label="Where"
-  	          className={classes.textField}
-            	  value={this.state.where}
-            	  onChange={this.handleChange('where')}       
-  	          placeholder="Destination"
-  	          margin="none"
+              required
+              id="where-id"
+              label="Where"
+              className={classes.textField}
+                value={this.state.where}
+                onChange={this.handleChange('where')}       
+              placeholder="Destination"
+              margin="none"
               fullWidth
             />
             
             <TextField
-  	          required
-  	          id="when-id"
-  	          label="When"
-  	          className={classes.textField}
-            	  value={this.state.when}
-            	  onChange={this.handleChange('when')}
-  	          placeholder="When"
+              required
+              id="when-id"
+              label="When"
+              className={classes.textField}
+                value={this.state.when}
+                onChange={this.handleChange('when')}
+              placeholder="When"
               margin="normal"
               fullWidth
             /><br/><br/>
             <FormControl className={classes.formControl} margin="none">
             <InputLabel htmlFor="bike-type-simple">Type of Biking</InputLabel>
             <Select
-            	id ="bike-type"
+              id ="bike-type"
               fullWidth
               value={this.state.biketype}
               onChange={this.handleChange('biketype')}
@@ -140,7 +140,7 @@ class Main extends Component {
             <FormControl className={classes.formControl} margin="none">
             <InputLabel htmlFor="age-simple">Level of Difficulty</InputLabel>
             <Select
-            	id ="hardness"
+              id ="hardness"
               fullWidth
               value={this.state.hardness}
               onChange={this.handleChange('hardness')}
