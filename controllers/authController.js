@@ -118,4 +118,9 @@ router.get('/logout', (req, res) => {
 	res.redirect('/')
 });
 
+router.get('/isAuthenticated', (req, res) => {
+	console.log('get /isAuthenticated');
+	res.json(true);
+});
+
 module.exports = router;
