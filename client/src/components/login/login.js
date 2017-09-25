@@ -7,11 +7,8 @@ import Button from 'material-ui/Button';
 import API from '../../utils/API';
 
 import TextField from 'material-ui/TextField';
-import { indigo, pink } from 'material-ui/colors';
-import { withTheme } from 'material-ui/styles';
+import { indigo } from 'material-ui/colors';
 
-const primary = indigo[500]; // #F44336
-const accent = pink['A200']; // #E040FB
 const primaryColor = "#F44336";
 
 const styles = theme => ({
@@ -73,6 +70,7 @@ class Login extends Component {
               password: ''
     })
   };
+
 
   render() {
    const { classes } = this.props;

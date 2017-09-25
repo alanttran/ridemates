@@ -1,22 +1,28 @@
-# Survey Ninja
+# Ridemates
 
-Create surveys like a ninja
+Connect with other riders!
 
 ## Demo
 
-* [Heroku](link tba)
+* [Heroku](https://ridemates.herokuapp.com/)
 
 ## Slides
 
-* [Presentation](https://docs.google.com/presentation/d/19BC6MmoTYDu3UzQTWq2tMRpb-Wau4-mkNz0OpUJQKQk/edit#slide=id.p)
+* [Presentation](tba)
 
 ## Built With
 
-* [MaterializeCSS](http://materializecss.com/) - A modern responsive front-end framework based on Material Design
-* bcrypt-nodejs
-* browser-cookies
+* [Material-UI](https://material-ui-1dab0.firebaseapp.com/)
+* express
 * passport
-* yelp-fusion
+* cookieParser
+* express-session
+* mongoDB
+* mongoose
+* morgan
+* ReactJS
+* ReactRouter
+* sendgrid
 
 ## Project Requirements
 
@@ -42,9 +48,12 @@ Create surveys like a ninja
 
 ## Authors
 
-* **Alan Tran** - *PM, QA and front-end* - [alanttran](https://github.com/alanttran)
+* **Alan Tran** - [alanttran](https://github.com/alanttran)
+* **Fabio Aiello** - [heloflier](https://github.com/heloflier)
+* **Jayalaxmi Arasalike** - [JayaArasalike](https://github.com/JayaArasalike)
+* **Waqas Alsubayee** - [Waqas84](https://github.com/Waqas84)
 
-See also the list of [contributors](https://github.com/alanttran/JobBnB/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/alanttran/ridemates/graphs/contributors) who participated in this project.
 
 ## Acknowledgments
 
