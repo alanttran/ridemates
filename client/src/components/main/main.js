@@ -65,17 +65,18 @@ class Main extends Component {
     //     .then(test => this.setState({ test }));
     // }
 
-  submitChange = event => {
+  submitChange =  (event, where, when, biketype, hardness) => {
     event.preventDefault();
     // sessionStorage.setItem("where":where);
     // sessionStorage.setItem("when":when);
     // sessionStorage.setItem("biketype":biketype);
     // sessionStorage.setItem("hardness":hardness);
 
-    API.request().then( (res) => {
+    //API.request().then( (res) => {
 
       //window.location = res.request.responseURL;
-    });
+    //});
+    this.props.getMatchedPeople(this.state.where, this.state.when, this.state.biketype, this.hardness);
 
     this.setState({
       where: '',

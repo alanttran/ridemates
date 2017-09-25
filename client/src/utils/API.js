@@ -27,6 +27,10 @@ const API = {
    },
    results: function() {
       return axios.post("/api/results");
+   },
+   selectedPeople: function(emailObject) {
+      console.log(emailObject);
+      return axios.post("/api/results");
    }
 
 };
