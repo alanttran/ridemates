@@ -55,7 +55,7 @@ class Main extends Component {
     where: '',
     when: '',
     biketype: '',
-    hardness: ''
+    difficulty: ''
 
   };
 
@@ -70,7 +70,7 @@ class Main extends Component {
     // sessionStorage.setItem("where":where);
     // sessionStorage.setItem("when":when);
     // sessionStorage.setItem("biketype":biketype);
-    // sessionStorage.setItem("hardness":hardness);
+    // sessionStorage.setItem("difficulty":difficulty);
 
     API.request().then( (res) => {
 
@@ -81,7 +81,7 @@ class Main extends Component {
       where: '',
       when: '',
       biketype: '',
-      hardness: ''
+      difficulty: ''
     })
   };
 
@@ -106,18 +106,6 @@ class Main extends Component {
   	          placeholder="Destination"
   	          margin="none"
               fullWidth
-            />
-            
-            <TextField
-  	          required
-  	          id="when-id"
-  	          label="When"
-  	          className={classes.textField}
-            	  value={this.state.when}
-            	  onChange={this.handleChange('when')}
-  	          placeholder="When"
-              margin="normal"
-              fullWidth
             /><br/><br/>
             <FormControl className={classes.formControl} margin="none">
             <InputLabel htmlFor="bike-type-simple">Type of Biking</InputLabel>
@@ -139,11 +127,11 @@ class Main extends Component {
             <FormControl className={classes.formControl} margin="none">
             <InputLabel htmlFor="age-simple">Level of Difficulty</InputLabel>
             <Select
-            	id ="hardness"
+            	id ="difficulty"
               fullWidth
-              value={this.state.hardness}
-              onChange={this.handleChange('hardness')}
-              input={<Input id="hardness-simple" />}
+              value={this.state.difficulty}
+              onChange={this.handleChange('difficulty')}
+              input={<Input id="difficulty-simple" />}
             >
               <MenuItem value=""><em>None</em>
               </MenuItem>

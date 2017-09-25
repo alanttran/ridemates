@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import API from '../../utils/API';
+import Typography from 'material-ui/Typography';
 
 import './login.css';
 
@@ -76,7 +77,9 @@ class Login extends Component {
   return (
     <div>
           <div className="rm-signup-login-container">
-            <img src="./images/biker-01.png"/><br/><br/>
+            <Typography className="rm-text-align-center" type="display1" color="inherit" >
+              Welcome Back! Let's Ride!
+            </Typography><br/>
             <TextField
   	          required
   	          id="login_username"

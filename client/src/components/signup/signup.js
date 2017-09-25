@@ -6,6 +6,8 @@ import API from '../../utils/API';
 import './signup.css';
 import TextField from 'material-ui/TextField';
 import { indigo } from 'material-ui/colors';
+import Typography from 'material-ui/Typography';
+
 const primaryColor = "#F44336";
 
 
@@ -74,7 +76,9 @@ class Signup extends Component {
   return (
     <div>
           <div className="rm-signup-login-container">
-          <img src="./images/biker-02.png"/><br/><br/>
+          <Typography className="rm-text-align-center" type="display1" color="inherit" >
+            Join our community! Completely free!
+          </Typography><br/>
           <TextField
 	          required
             id="signup_username"
