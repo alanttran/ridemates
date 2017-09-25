@@ -65,17 +65,18 @@ class Main extends Component {
     //     .then(test => this.setState({ test }));
     // }
 
-  submitChange = event => {
+  submitChange =  (event, where, when, biketype, hardness) => {
     event.preventDefault();
     // sessionStorage.setItem("where":where);
     // sessionStorage.setItem("when":when);
     // sessionStorage.setItem("biketype":biketype);
     // sessionStorage.setItem("difficulty":difficulty);
 
-    API.request().then( (res) => {
+    //API.request().then( (res) => {
 
       //window.location = res.request.responseURL;
-    });
+    //});
+    this.props.getMatchedPeople(this.state.where, this.state.when, this.state.biketype, this.hardness);
 
     this.setState({
       where: '',
@@ -91,26 +92,26 @@ class Main extends Component {
   };
 
   render() {
-  	const classes = this.props.classes;
+    const classes = this.props.classes;
   return (
     <div>
       <Card className={classes.card}>
         <CardContent>
             <TextField
-  	          required
-  	          id="where-id"
-  	          label="Where"
-  	          className={classes.textField}
-            	  value={this.state.where}
-            	  onChange={this.handleChange('where')}       
-  	          placeholder="Destination"
-  	          margin="none"
+              required
+              id="where-id"
+              label="Where"
+              className={classes.textField}
+                value={this.state.where}
+                onChange={this.handleChange('where')}       
+              placeholder="Destination"
+              margin="none"
               fullWidth
             /><br/><br/>
             <FormControl className={classes.formControl} margin="none">
             <InputLabel htmlFor="bike-type-simple">Type of Biking</InputLabel>
             <Select
-            	id ="bike-type"
+              id ="bike-type"
               fullWidth
               value={this.state.biketype}
               onChange={this.handleChange('biketype')}

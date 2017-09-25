@@ -83,6 +83,7 @@ app.use("/api/results", resultsRoutes);
 // to be taken out at the end of primary tests ++++++++++++++++++++++++++++++++++++++++++++++++
 app.get('/api/test', (req, res) => {
 	console.log('waqas says -haqaqi-')
+	console.log('test: ', req.body)
 	res.json('test successful');
 });
 

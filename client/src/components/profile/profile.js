@@ -51,7 +51,8 @@ class Profile extends Component {
     state: '',
     zipcode: '',
     email: '',
-    phonenum: ''
+    phonenum: '',
+    radius: ''
   };
 
   handleChange = name => event => {
@@ -74,7 +75,8 @@ class Profile extends Component {
       state: '',
       zipcode: '',
       email: '',
-      phonenum: ''
+      phonenum: '',
+      radius: ''
     };
   };
 
@@ -196,6 +198,18 @@ class Profile extends Component {
 	          placeholder="Phone Number"
 	          
 	          margin="normal"
+          />
+          <TextField
+            required
+            id="radius"
+            name="radius"
+            label="Radius of riding area"
+            className={classes.textField}
+              value={this.state.radius}
+              onChange={this.handleChange('radius')}
+            placeholder="Radius of riding area"
+            
+            margin="normal"
           />
         </CardContent>
 
