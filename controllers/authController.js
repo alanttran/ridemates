@@ -8,7 +8,10 @@ const mongoose				= require('mongoose'),
 	  router 				= require('express').Router(),
 	  LocalStrategy 		= require('passport-local').Strategy,
 	  passport				= require('passport'),
-	  User 					= require('../models/User');
+	  User 					= require('../models/User'),
+	  getCoordinates 		= require('../services/GeoLocation'),
+	  geocoder = require("geocoder");
+
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -35,30 +38,47 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/signupForm', (req, res) => {
-	console.log('post /signupForm')
-	console.log('req.body: ', req.user);
-	User.findOneAndUpdate({_id: req.user.id}, 
-                          { $set: { firstname: 	req.body.firstname,
-                          			lastname: 	req.body.lastname,
-                          			address1: 	req.body.address1,
-                          			address2: 	req.body.address2,
-                          			city	: 	req.body.city,
-                          			state 	: 	req.body.state,
-                          			zipcode : 	req.body.zipcode,
-                          			phonenum: 	req.body.phonenum,
-                          			radius	: 	req.body.radius
-                          		   } 
-                          }, 
-                          function(error, user) {
-        if (error) {
-          res.send(error);
-        }
-        else {
-            console.log('past findOneAndUpdate')
-            console.log('doc: ', doc)
-            res.send(200)
-        };
-    }); 
+	const userAddress = (	req.body.address1 + " " +
+							req.body.address2 + " " +
+							req.body.city + " " +
+							req.body.state + " " +
+							req.body.zipcode
+							);
+	console.log('userAddress: ', userAddress);
+	
+	// getCoordinates.fromAddress(userAddress, function(err, data) {
+	geocoder.geocode(userAddress, function(err, data) {
+
+		console.log('post /signupForm')
+		console.log('req.body: ', req.user);
+		console.log(JSON.stringify(data, null, 2))
+		console.log('data.results.geometry: ', data.results[0].geometry.location);
+		User.findOneAndUpdate({_id: req.user.id}, 
+	                          { $set: { firstname: 	req.body.firstname,
+	                          			lastname: 	req.body.lastname,
+	                          			address1: 	req.body.address1,
+	                          			address2: 	req.body.address2,
+	                          			city	: 	req.body.city,
+	                          			state 	: 	req.body.state,
+	                          			zipcode : 	req.body.zipcode,
+	                          			email	: 	req.body.email,
+	                          			phonenum: 	req.body.phonenum,
+	                          			radius	: 	req.body.radius,
+	                          			coordinates: data.results[0].geometry.location 	
+	                          		   } 
+	                          }, 	
+            function(error, user) {
+	        if (error) {
+	          res.send(error);
+	        }
+	        else {
+	            console.log('past findOneAndUpdate')
+	            res.send(200)
+	        };
+	    }); 
+
+	});
+
 	// const newUser = new User({username: req.body.username});
 	// User.register(newUser, req.body.password, (err, user) => {
 	// 	if (err) {

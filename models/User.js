@@ -11,8 +11,9 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const UserSchema = new Schema({
 			username: 	String,
 			password: 	String,
+			imageUrl: 	String, 
 			firstname: 	String,
-			lasstname: 	String,
+			lastname: 	String,
 			address1: 	String,
 			address2: 	String,
 			city: 		String,
@@ -21,6 +22,10 @@ const UserSchema = new Schema({
 			email: 		String,
 			phonenum: 	Number,
 			radius: 	Number,
+			coordinates: {
+				lat: Number,
+				lng: Number
+			},
 			dateCreated: {
 				type: 		Date,
 				required: 	false

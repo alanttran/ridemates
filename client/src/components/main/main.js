@@ -53,13 +53,11 @@ class Main extends Component {
   //const bull = <span className={classes.bullet}>•</span>;
 
   state = {
-    test: '',
     where: '',
-    when: '',
     biketype: '',
-    hardness: ''
+    difficulty: ''
 
-  };
+  }
 
     // componentDidMount(){
     //   fetch('/api/test')
@@ -72,20 +70,21 @@ class Main extends Component {
     // sessionStorage.setItem("where":where);
     // sessionStorage.setItem("when":when);
     // sessionStorage.setItem("biketype":biketype);
-    // sessionStorage.setItem("hardness":hardness);
+    // sessionStorage.setItem("difficulty":difficulty);
+    console.log('in signup submitchange')
 
-    API.request().then( (res) => {
-
+    API.results(this.state)
+        .then( res => {
+          console.log('res: ', res)
       //window.location = res.request.responseURL;
     });
 
     this.setState({
       where: '',
-      when: '',
       biketype: '',
-      hardness: ''
+      difficulty: ''
     })
-  };
+  }
 
 
   handleChange = name => event => {
@@ -97,34 +96,24 @@ class Main extends Component {
   return (
     <div>
       <Card className={classes.card}>
-      	<CardHeader style={styles.primaryColor} className={classes.title} title = {this.state.test} />
+      	<CardHeader style={styles.primaryColor} className={classes.title} title = "Title" />
         <CardContent>
           <TextField
 	          required
 	          id="where-id"
-	          label="Where"
+            name="where"
+            label="Where"
 	          className={classes.textField}
           	  value={this.state.where}
           	  onChange={this.handleChange('where')}       
 	          placeholder="Where"
 	          margin="normal"
           />
-          <TextField
-	          required
-	          id="when-id"
-	          label="When"
-	          className={classes.textField}
-          	  value={this.state.when}
-          	  onChange={this.handleChange('when')}
-	          placeholder="When"
-	          margin="normal"
-          />
-
           <FormControl className={classes.formControl}>
           <InputLabel htmlFor="bike-type-simple">Type of Biking</InputLabel>
           <Select
-          	id ="bike-type"
-            
+          	id="bike-type"
+            name='bikeType'
             value={this.state.biketype}
             onChange={this.handleChange('biketype')}
             input={<Input id="bike-type-simple" />}
@@ -141,11 +130,11 @@ class Main extends Component {
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-simple">Level of Difficulty</InputLabel>
           <Select
-          	id ="hardness"
-    
-            value={this.state.hardness}
-            onChange={this.handleChange('hardness')}
-            input={<Input id="hardness-simple" />}
+          	id ="difficulty"
+            name="difficulty"
+            value={this.state.difficulty}
+            onChange={this.handleChange('difficulty')}
+            input={<Input id="difficulty-simple" />}
           >
             <MenuItem value=""><em>None</em>
             </MenuItem>

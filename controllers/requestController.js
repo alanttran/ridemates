@@ -11,6 +11,7 @@ const _ 					= require('lodash'),
 	  router 				= require('express').Router(),
 	  passport				= require('passport'),
 	  // isLoggedIn			= require('../js/isLoggedIn'),
+	  getCoordinates 		= require('../services/GeoLocation'),
 	  Email 				= require('../models/Email'),
 	  User 					= require('../models/User'),	  
 	  Mailer				= require('../services/Mailer'),
@@ -26,7 +27,7 @@ const isLoggedIn = function (req, res, next) {
 		console.log('user: ', req.user);
 	}
 	res.redirect('/login');
-}
+};
 
 // for PROD: look into the following:+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // const Email = mongoose.model('Survey');
@@ -37,12 +38,16 @@ const isLoggedIn = function (req, res, next) {
 
 router.get('/allrequests', isLoggedIn, async (req, res) => {
 	console.log('in allrequests');
-	const requests = await Email.find({ _user: user.id })
-		.select({
-			recipients: false
-		})
-	console.log('in /api/request GET route')
-	res.send(requests);
+	console.log('user: ', req.user);
+	const requests = await Email.find({ _user: req.user.id })
+		// .select({
+			// recipients: false
+		// })
+		.then(function(results) {
+			console.log('in /api/request GET route');
+			console.log('results: ', results);
+			res.json(results);
+		});
 });
 
 //=================================================
