@@ -14,7 +14,19 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 
+import API from './utils/API';
+
 class App extends Component {
+
+  state = {
+    matchedPeople: [],
+  }
+
+  getMatchedPeople = function(where, when, biketype, hardness) {
+    API.getMatchedPeople(where, when, biketype, hardness).then((results) => {
+      this.setState({ matchedPeople: results });
+    });
+  }
 
   render() {
     return (
@@ -32,11 +44,11 @@ class App extends Component {
             </Toolbar>
           </AppBar>
           
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/" component={LandingPage} getMatchedPeople = { this.getMatchedPeople }/>
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignupPage} />
           <Route exact path="/profile" component={ProfilePage} />
-          <Route exact path="/results/:where/:when" component={ResultsPage} />
+          <Route exact path="/results/:where/:when" component={ResultsPage} matchedPeople = { this.state.matchedPeople} />
         </div>
         
       </Router> 

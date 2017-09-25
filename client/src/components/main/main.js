@@ -51,11 +51,13 @@ class Main extends Component {
   //const bull = <span className={classes.bullet}>•</span>;
 
   state = {
+    test: '',
     where: '',
+    when: '',
     biketype: '',
-    difficulty: ''
+    hardness: ''
 
-  }
+  };
 
     // componentDidMount(){
     //   fetch('/api/test')
@@ -63,26 +65,26 @@ class Main extends Component {
     //     .then(test => this.setState({ test }));
     // }
 
-  submitChange = event => {
+  submitChange =  (event, where, when, biketype, hardness) => {
     event.preventDefault();
     // sessionStorage.setItem("where":where);
     // sessionStorage.setItem("when":when);
     // sessionStorage.setItem("biketype":biketype);
-    // sessionStorage.setItem("difficulty":difficulty);
-    console.log('in signup submitchange')
+    // sessionStorage.setItem("hardness":hardness);
 
-    API.results(this.state)
-        .then( res => {
-          console.log('res: ', res)
+    //API.request().then( (res) => {
+
       //window.location = res.request.responseURL;
-    });
+    //});
+    this.props.getMatchedPeople(this.state.where, this.state.when, this.state.biketype, this.hardness);
 
     this.setState({
       where: '',
+      when: '',
       biketype: '',
-      difficulty: ''
+      hardness: ''
     })
-  }
+  };
 
 
   handleChange = name => event => {
@@ -90,38 +92,38 @@ class Main extends Component {
   };
 
   render() {
-  	const classes = this.props.classes;
+    const classes = this.props.classes;
   return (
     <div>
       <Card className={classes.card}>
         <CardContent>
             <TextField
-  	          required
-  	          id="where-id"
-  	          label="Where"
-  	          className={classes.textField}
-            	  value={this.state.where}
-            	  onChange={this.handleChange('where')}       
-  	          placeholder="Destination"
-  	          margin="none"
+              required
+              id="where-id"
+              label="Where"
+              className={classes.textField}
+                value={this.state.where}
+                onChange={this.handleChange('where')}       
+              placeholder="Destination"
+              margin="none"
               fullWidth
             />
             
             <TextField
-  	          required
-  	          id="when-id"
-  	          label="When"
-  	          className={classes.textField}
-            	  value={this.state.when}
-            	  onChange={this.handleChange('when')}
-  	          placeholder="When"
+              required
+              id="when-id"
+              label="When"
+              className={classes.textField}
+                value={this.state.when}
+                onChange={this.handleChange('when')}
+              placeholder="When"
               margin="normal"
               fullWidth
             /><br/><br/>
             <FormControl className={classes.formControl} margin="none">
             <InputLabel htmlFor="bike-type-simple">Type of Biking</InputLabel>
             <Select
-            	id ="bike-type"
+              id ="bike-type"
               fullWidth
               value={this.state.biketype}
               onChange={this.handleChange('biketype')}
@@ -138,7 +140,7 @@ class Main extends Component {
             <FormControl className={classes.formControl} margin="none">
             <InputLabel htmlFor="age-simple">Level of Difficulty</InputLabel>
             <Select
-            	id ="hardness"
+              id ="hardness"
               fullWidth
               value={this.state.hardness}
               onChange={this.handleChange('hardness')}
@@ -151,7 +153,6 @@ class Main extends Component {
               <MenuItem value='Hard (Above 50 miles)'>Hard (Above 50 miles)</MenuItem>
             </Select>
             </FormControl>
->>>>>>> d9c0d46d297ae6af2bebaf20f3a71ecd441b2f26
         </CardContent>
 
         <CardActions>

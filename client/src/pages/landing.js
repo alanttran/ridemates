@@ -27,7 +27,7 @@ class LandingPage extends Component{
 					<Typography className="rm-cover-title" type="display3" >
 							Find Friends to ride with you! Anywhere!
 					</Typography>
-					<Main></Main>
+					<Main peopleMatched = { this.props.getMatchedPeople }></Main>
 				</div>
 				<div className="rm-landing-page-item-container">
 

@@ -31,7 +31,7 @@ const _ 					= require('lodash'),
 // }
 
 // for PROD: look into the following:
-// const Email = mongoose.model('Survey');
+// const Email = mongoose.model('Email');
 
 //=================================================
 // 	handling the main request
@@ -42,11 +42,16 @@ router.post('/', (req, res) => {
 	console.log('req.body: ', req.body);
 	console.log('req.body.where: ', req.body.where);
 	const searchAddress = req.body.where;
+	const rideType = req.body.bikeType;
+	const difficulty = req.body.difficulty;
 	console.log('searchAddress: ', searchAddress);
 	geocoder.geocode(searchAddress, function(err, data) {
 		console.log('data.results.geometry: ', data.results[0].geometry.location);
 		searchCoordinates = data.results[0].geometry.location;
-		User.find()
+		User.find({ 
+					bikeType: rideType,
+					difficulty: difficulty
+				 })
             .then(function(doc) {
             	console.log('*****************************');
             	console.log('doc: ', doc);

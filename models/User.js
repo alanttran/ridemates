@@ -26,6 +26,16 @@ const UserSchema = new Schema({
 				lat: Number,
 				lng: Number
 			},
+			rideType: {
+						road: 		Boolean,
+						mountain: 	Boolean,
+						other: 		Boolean
+			}, 
+			difficulty: {
+						easy: 		Boolean,
+						medium: 	Boolean,
+						hard: 		Boolean
+			}, 
 			dateCreated: {
 				type: 		Date,
 				required: 	false

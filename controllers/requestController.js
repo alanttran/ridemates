@@ -39,6 +39,7 @@ const isLoggedIn = function (req, res, next) {
 router.get('/allrequests', isLoggedIn, async (req, res) => {
 	console.log('in allrequests');
 	console.log('user: ', req.user);
+	console.log('user: ', req.user);
 	const requests = await Email.find({ _user: req.user.id })
 		// .select({
 			// recipients: false
