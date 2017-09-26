@@ -8,8 +8,8 @@ import axios from "axios";
 
 const API = {
 // Saves a new user to the db
-   createUser: function({ username, password }) {
-      return axios.post("/api/signup", { username, password });
+   createUser: function(user) {
+      return axios.post("/api/signup", user);
    },
    createUserProfile: function(profile) {
       return axios.post("/api/signupForm", profile);

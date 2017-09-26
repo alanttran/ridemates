@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import Button from 'material-ui/Button';
+import { FormGroup, FormControlLabel } from 'material-ui/Form';
 import API from '../../utils/API';
+import Checkbox from 'material-ui/Checkbox';
 
 import TextField from 'material-ui/TextField';
 import { indigo } from 'material-ui/colors';
@@ -45,18 +47,28 @@ class Profile extends Component {
   state = {
     firstname: '',
     lastname: '',
-    address1: '',
-    address2: '',
+    address: '',
     city: '',
     state: '',
     zipcode: '',
     email: '',
     phonenum: '',
-    radius: ''
+    radius: '',
+    rideTypeRoad: true,
+    rideTypeMountain: false,
+    rideTypeOther: false,
+    difficultyEasy: true,
+    difficultyIntermediate: true, 
+    difficultyHard: false
   };
 
   handleChange = name => event => {
+    console.log(name);
     this.setState({ [name]: event.target.value });
+  };
+
+   handleCheckboxChange = name => (event, checked) => {
+    this.setState({ [name]: checked });
   };
 
   submitChange = event => {
@@ -66,18 +78,19 @@ class Profile extends Component {
 
     API.createUserProfile(this.state);
 
-    this.setState = {
-      firstname: '',
-      lastname: '',
-      address1: '',
-      address2: '',
-      city: '',
-      state: '',
-      zipcode: '',
-      email: '',
-      phonenum: '',
-      radius: ''
-    };
+    // this.setState = {
+    //   firstname: '',
+    //   lastname: '',
+    //   address: '',
+    //   city: '',
+    //   state: '',
+    //   zipcode: '',
+    //   email: '',
+    //   phonenum: '',
+    //   radius: '',
+    //   rideType: {},
+    //   difficulty: {}
+    // };
   };
 
   render() {
@@ -118,25 +131,14 @@ class Profile extends Component {
           />
           <TextField
 	          required
-            id="address-1"
-	          name="address-1"
+            id="address"
+	          name="address"
 	          label="Address"
 	          className={classes.textField}
           	  value={this.state.address1}
-          	  onChange={this.handleChange('address1')}
+          	  onChange={this.handleChange('address')}
 	          placeholder="Address"
 	          
-	          margin="normal"
-          />
-          <TextField
-	          required
-            id="address-2"
-	          name="address-2"
-	          label="Address"
-	          className={classes.textField}
-          	  value={this.state.address2}
-          	  onChange={this.handleChange('address2')}
-	          placeholder="Address"
 	          margin="normal"
           />
           <TextField
@@ -211,6 +213,78 @@ class Profile extends Component {
             
             margin="normal"
           />
+          <FormGroup>
+            Type
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={this.state.rideTypeRoad}
+                  onChange={this.handleCheckboxChange('rideTypeRoad')}
+                  value="road"
+                />
+              }
+              label="Road Biking"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={this.state.rideTypeMountain}
+                  onChange={this.handleCheckboxChange('rideTypeMountain')}
+                  value="mountain"
+                />
+              }
+              label="Mountain Biking"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={this.state.rideTypeHybrid}
+                  onChange={this.handleCheckboxChange('rideTypeHybrid')}
+                  value="hybrid"
+                />
+              }
+              label="Hybrid Biking"
+            />
+            
+            
+          </FormGroup><br/>
+          <FormGroup>
+            Difficulty
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={this.state.difficultyEasy}
+                  onChange={this.handleCheckboxChange('difficultyEasy')}
+                  value="easy"
+                />
+              }
+              label="Easy (15-25 miles)"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={this.state.difficultyIntermediate}
+                  onChange={this.handleCheckboxChange('difficultyIntermediate')}
+                  value="intermediate"
+                />
+              }
+              label="Intermediate (25-45 miles)"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={this.state.difficultyHard}
+                  onChange={this.handleCheckboxChange('difficultyHard')}
+                  value="hard"
+                />
+              }
+              label="Hard (Above 50 miles)"
+            />
+            
+            
+          </FormGroup>
         </CardContent>
 
         <CardActions>

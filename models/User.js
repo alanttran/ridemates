@@ -14,8 +14,7 @@ const UserSchema = new Schema({
 			imageUrl: 	String, 
 			firstname: 	String,
 			lastname: 	String,
-			address1: 	String,
-			address2: 	String,
+			address: 	String,
 			city: 		String,
 			state: 		String,
 			zipcode: 	Number,
@@ -26,16 +25,12 @@ const UserSchema = new Schema({
 				lat: Number,
 				lng: Number
 			},
-			rideType: {
-						road: 		Boolean,
-						mountain: 	Boolean,
-						other: 		Boolean
-			}, 
-			difficulty: {
-						easy: 		Boolean,
-						medium: 	Boolean,
-						hard: 		Boolean
-			}, 
+			rideTypeRoad: 			Boolean,
+		    rideTypeMountain: 		Boolean,
+		    rideTypeOther: 			Boolean,
+		    difficultyEasy: 		Boolean,
+		    difficultyIntermediate: Boolean,
+		    difficultyHard: 		Boolean,
 			dateCreated: {
 				type: 		Date,
 				required: 	false
