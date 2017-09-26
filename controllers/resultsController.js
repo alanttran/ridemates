@@ -40,17 +40,18 @@ const _ 					= require('lodash'),
 router.post('/', (req, res) => {
 	console.log('in results');
 	console.log('req.body: ', req.body);
-	console.log('req.body.where: ', req.body.where);
 	const searchAddress = req.body.where;
-	const rideType = req.body.bikeType;
+	const rideType = req.body.biketype;
 	const difficulty = req.body.difficulty;
 	console.log('searchAddress: ', searchAddress);
+	console.log("es6", [rideType]);
+	console.log("es5", rideType);
 	geocoder.geocode(searchAddress, function(err, data) {
 		console.log('data.results.geometry: ', data.results[0].geometry.location);
 		searchCoordinates = data.results[0].geometry.location;
 		User.find({ 
-					bikeType: rideType,
-					difficulty: difficulty
+					[rideType]: true,
+					[difficulty]: true
 				 })
             .then(function(doc) {
             	console.log('*****************************');
