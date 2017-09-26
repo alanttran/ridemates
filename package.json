@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "an app to provide byciclists with friends to ride with.",
   "main": "server.js",
+  "engines": {
+    "node": "8.5.0"
+  },
   "scripts": {
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "webhookcommented": "lt -p 4000 -s waqasspecialwithalanandjaya",
