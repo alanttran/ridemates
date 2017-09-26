@@ -18,16 +18,19 @@ const _ 					= require('lodash'),
 	  emailTemplate 		= require('../services/emailTemplates/rideRequestTemplate');
 
 // TODO: get rid of this and uncomment the middleware function +++++++++++++++++++++++++++++++++++++++
-const isLoggedIn = function (req, res, next) {
+function isLoggedIn(req, res, next) {
 	console.log('in isLoggedIn =========================');
-	console.log('req.isAuthenticated: ', req.isAuthenticated);
-	console.log('req.user: ', req.user);
 	if(req.isAuthenticated()) {
-		return next();
 		console.log('user: ', req.user);
+		return next();
 	}
-	res.redirect('/login');
+	res.redirect('http://www.google.com');
 };
+
+// function isLoggedIn(req, res, next) {
+// 	console.log('in new isLoggedIn - user: ', req.user);
+// 	return req.isAuthenticated();
+// }
 
 // for PROD: look into the following:+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // const Email = mongoose.model('Survey');
