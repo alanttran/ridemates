@@ -51,9 +51,7 @@ class Main extends Component {
   //const bull = <span className={classes.bullet}>•</span>;
 
   state = {
-    test: '',
-    where: '',
-    when: '',
+    where: 'San Diego, CA',
     biketype: '',
     difficulty: ''
 
@@ -65,7 +63,7 @@ class Main extends Component {
     //     .then(test => this.setState({ test }));
     // }
 
-  submitChange =  (event, where, when, biketype, hardness) => {
+  submitChange =  (event, where, biketype, difficulty) => {
     event.preventDefault();
     // sessionStorage.setItem("where":where);
     // sessionStorage.setItem("when":when);
@@ -76,11 +74,18 @@ class Main extends Component {
 
       //window.location = res.request.responseURL;
     //});
-    this.props.getMatchedPeople(this.state.where, this.state.when, this.state.biketype, this.hardness);
+
+    console.log('in signup submitchange')
+
+    API.results(this.state) 
+        .then( res => {
+          console.log('res: ', res)
+      //window.location = res.request.responseURL;
+    });
+    //this.props.getMatchedPeople(this.state.where, this.state.when, this.state.biketype, this.hardness);
 
     this.setState({
       where: '',
-      when: '',
       biketype: '',
       difficulty: ''
     })
