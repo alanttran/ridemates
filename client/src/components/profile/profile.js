@@ -36,7 +36,7 @@ const styles = theme => ({
     margin: theme.spacing.unit,
   },
   primaryColor: {
-      background: primaryColor
+      background: primaryColor 
    },
 });
 
@@ -45,7 +45,7 @@ class Profile extends Component {
   //const bull = <span className={classes.bullet}>•</span>;
 
   state = {
-    firstname: '',
+    firstname: 'FakeBob',
     lastname: '',
     address: '',
     city: '',
@@ -59,8 +59,35 @@ class Profile extends Component {
     rideTypeOther: false,
     difficultyEasy: true,
     difficultyIntermediate: true, 
-    difficultyHard: false
+    difficultyHard: false 
   };
+
+  componentDidMount = () => {
+    console.log("profile component mount");
+
+    API.userProfile()
+     .then(res => {
+      console.log(res.data);
+        this.setState({ 
+          firstname:            res.data.firstname,
+          lastname:             res.data.lastname,
+          address:              res.data.address, 
+          city:                 res.data.city,
+          state:                res.data.state,
+          zipcode:              res.data.zipcode,
+          email:                res.data.email,
+          phonenum:             res.data.phonenum,
+          radius:               res.data.radius,
+          rideTypeRoad:         res.data.rideTypeRoad,
+          rideTypeMountain:     res.data.rideTypeMountain,
+          rideTypeOther:        res.data.rideTypeOther,
+          difficultyEasy:       res.data.difficultyEasy,
+          difficultyIntermediate: res.data.difficultyIntermediate, 
+          difficultyHard:        res.data.difficultyHard
+          
+        });
+      })
+  }
 
   handleChange = name => event => {
     console.log(name);
@@ -135,7 +162,7 @@ class Profile extends Component {
 	          name="address"
 	          label="Address"
 	          className={classes.textField}
-          	  value={this.state.address1}
+          	  value={this.state.address}
           	  onChange={this.handleChange('address')}
 	          placeholder="Address"
 	          

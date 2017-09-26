@@ -33,6 +33,10 @@ const API = {
    isAuthenticated: function() {
       console.log('API isAuthenticated');
       return axios.get("/api/isAuthenticated");
+   },
+   userProfile: function(){
+      console.log('/api/userProfile call')
+      return axios.get('/api/getUser');
    }
 };
 

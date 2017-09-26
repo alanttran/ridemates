@@ -127,4 +127,10 @@ router.get('/isAuthenticated', (req, res) => {
 	res.json(true);
 });
 
+router.get('/getUser', (req, res) => {
+	console.log('get /getUser works');
+	console.log(req.user);
+	res.json(req.user);
+});
+
 module.exports = router;
