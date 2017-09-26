@@ -23,8 +23,8 @@ const API = {
    request: function(when, where, biketype, difficulty) {
       return axios.post("/api/request", { when, where, biketype, difficulty });
    },
-   results: function(where, biketype, difficulty) {
-      return axios.post("/api/results", { where, biketype, difficulty });
+   results: function(search) {
+      return axios.post("/api/results", search);
    },
    selectedPeople: function(emailObject) {
       console.log(emailObject);
