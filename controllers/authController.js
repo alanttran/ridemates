@@ -38,8 +38,7 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/signupForm', (req, res) => {
-	const userAddress = (	req.body.address1 + " " +
-							req.body.address2 + " " +
+	const userAddress = (	req.body.address + " " +
 							req.body.city + " " +
 							req.body.state + " " +
 							req.body.zipcode
