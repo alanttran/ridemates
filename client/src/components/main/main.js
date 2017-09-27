@@ -11,7 +11,7 @@ import Input, { InputLabel } from "material-ui/Input";
 import { FormControl } from "material-ui/Form";
 import Select from "material-ui/Select";
 import API from "../../utils/API";
-import { BrowserRouter as Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 
 import "./main.css";
 
@@ -52,7 +52,8 @@ class Main extends Component {
   state = {
     where: "San Diego, CA",
     biketype: "",
-    difficulty: ""
+    difficulty: "",
+    
   };
 
   // componentDidMount(){
@@ -99,11 +100,13 @@ class Main extends Component {
     API.results(searchObj).then(res => {
       console.log("res: ", res);
       //window.location = res.request.responseURL;
+      // debugger;
+      this.props.parent.setState({result: res.data, receivedData: true})
     });
     //this.props.getMatchedPeople(this.state.where, this.state.when, this.state.biketype, this.hardness);
 
     this.setState({
-      where: "",
+      where: "San Diego, CA",
       biketype: "",
       difficulty: ""
     });
@@ -113,8 +116,10 @@ class Main extends Component {
     this.setState({ [name]: event.target.value });
   };
 
-  render() {
+  render() { 
+
     const classes = this.props.classes;
+    
     return (
       <div>
         <Card className={classes.card}>
@@ -177,16 +182,19 @@ class Main extends Component {
           </CardContent>
 
           <CardActions>
-            <Link to="/results">
+        
               <Button
                 raised
                 color="primary"
                 className="rm-main-button"
                 onClick={this.submitChange}
               >
+            
                 Find Mates!
-              </Button>
-            </Link>
+             
+             </Button>
+
+             
           </CardActions>
         </Card>
       </div>
