@@ -60,7 +60,7 @@ router.get('/allrequests', isLoggedIn, async (req, res) => {
 
 router.get('/:requestId/:choice', isLoggedIn, (req, res) => {
 	console.log('in /api/request GET (thanks) route');
-	res.send('Thanks for responding');
+	res.redirect('/email-confirmation');
 });
 
 //=================================================
