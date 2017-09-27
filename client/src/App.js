@@ -48,7 +48,7 @@ class App extends Component {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignupPage} />
           <Route exact path="/profile" component={ProfilePage} />
-          <Route exact path="/results/:where/:when" component={ResultsPage} matchedPeople = { this.state.matchedPeople} />
+          <Route exact path="/results/:where/:biketype/:difficulty" component={ResultsPage} matchedPeople = { this.state.matchedPeople} />
         </div>
         
       </Router> 

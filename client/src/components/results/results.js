@@ -64,29 +64,29 @@ class Results extends React.Component {
 //checked items array
 
 	// Getting all quotes when the component mounts
-	componentDidMount() {
-		this.getMatchedPeople();
-	}
+	// componentDidMount() {
+	// 	this.getMatchedPeople();
+	// }
 
-	getMatchedPeople() {
-		let newMatchedPeople = [
-			{id: 0, firstName:"Jaya", lastName:"Arasalike", email:"xyz@gmail.com", imageUrl:""},
-			{id: 1, firstName:"Fabio", lastName:"Aiello", email:"abc@gmail.com", imageUrl: ""},
-			{id: 2, firstName:"Alan", lastName:"Tran", email: "cde@gmail.com", imageUrl:""},
-			{id: 3, firstName:"Waqas", lastName:"Alsubayee", email:"efg@gmail.com", imageUrl:""},
+	// getMatchedPeople() {
+	// 	let newMatchedPeople = [
+	// 		{id: 0, firstName:"Jaya", lastName:"Arasalike", email:"xyz@gmail.com", imageUrl:""},
+	// 		{id: 1, firstName:"Fabio", lastName:"Aiello", email:"abc@gmail.com", imageUrl: ""},
+	// 		{id: 2, firstName:"Alan", lastName:"Tran", email: "cde@gmail.com", imageUrl:""},
+	// 		{id: 3, firstName:"Waqas", lastName:"Alsubayee", email:"efg@gmail.com", imageUrl:""},
 
-		];
+	// 	];
 
-		//let newMatchedPeople = this.props.matchedPeople;
+	// 	//let newMatchedPeople = this.props.matchedPeople;
 
-		let newMatchedPeopleIds = [];
-		newMatchedPeople.map(person => { newMatchedPeopleIds.push(person.id) })
+	// 	let newMatchedPeopleIds = [];
+	// 	newMatchedPeople.map(person => { newMatchedPeopleIds.push(person.id) })
 
-		this.setState({
-			matchedPeople: newMatchedPeople,
-			matchedPeopleIds: newMatchedPeopleIds,
-		})
-	}
+	// 	this.setState({
+	// 		matchedPeople: newMatchedPeople,
+	// 		matchedPeopleIds: newMatchedPeopleIds,
+	// 	})
+	// }
 	handleToggle(value) {
 	// const { checked } = this.state; //state has checked property, we are taking it out
 		const currentIndex = this.state.checked.indexOf(value); // 0
@@ -138,6 +138,7 @@ class Results extends React.Component {
 		this.state.checked.map(id => {
 			let recipient = this.state.matchedPeople.filter((person) => { return (person.id === id);})
 			recipientEmails.push(recipient[0].email);
+			recipientEmails.join();
 		})
 
 		let emailObject = {
@@ -153,8 +154,8 @@ class Results extends React.Component {
 	render() {
 		const classes = this.props.classes;
 		const { all } = this.state;
-		console.log(this.props);
-		console.log("Results ");
+		console.log('props', this.props);
+		console.log("Results ", this.props.data);
 		if(this.state.matchedPeople.length === 0) {
 			return <div>Oops! Sorry, we did not find any matching ridemates in {this.props.where} area </div>;
 		}

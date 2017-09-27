@@ -5,6 +5,8 @@ import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 
 import './landing.css';
+import Results from '../components/results/results';
+
 
 let imgUrl = './images/biking-cover-3.png';
 
@@ -19,7 +21,12 @@ let coverImage = {
 
 
 class LandingPage extends Component{
+
+	state = {
+	}
 	render(){
+		console.log('state', this.state)
+		if(this.state.receivedData) return <Results data={this.state.result}/>;
 		return(
 			<div>
 				
@@ -27,7 +34,7 @@ class LandingPage extends Component{
 					<Typography className="rm-cover-title" type="display3" >
 							Find Friends to ride with you! Anywhere!
 					</Typography>
-					<Main peopleMatched = { this.props.getMatchedPeople }></Main>
+					<Main peopleMatched = { this.props.getMatchedPeople } parent = {this}></Main>
 				</div>
 				<div className="rm-landing-page-item-container">
 

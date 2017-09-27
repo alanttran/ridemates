@@ -5,7 +5,7 @@ import Results from '../components/results';
 import './results.css';
 
 class ResultsPage extends Component{
-	render() {
+	render() {	
 		console.log(this.props);
 		return(
 			<div>
