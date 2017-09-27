@@ -20,15 +20,13 @@ const API = {
    loginUser: function({ username, password }) {
       return axios.post("/api/login", { username, password });
    },
-   request: function(when, where, biketype, difficulty) {
-      return axios.post("/api/request", { when, where, biketype, difficulty });
-   },
    results: function(search) {
       return axios.post("/api/results", search);
    },
-   selectedPeople: function(emailObject) {
-      console.log(emailObject);
-      return axios.post("/api/results");
+   emailRequest: function(emailObject) {
+      console.log('================================================');
+      console.log('api/request -- emailObject: ', emailObject);
+      return axios.post("/api/request", emailObject);
    },
    isAuthenticated: function() {
       console.log('API isAuthenticated');

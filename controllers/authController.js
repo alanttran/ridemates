@@ -52,23 +52,23 @@ router.post('/signupForm', (req, res) => {
 		console.log('req.body: ', req.user);
 		console.log(JSON.stringify(data, null, 2))
 		console.log('data.results.geometry: ', data.results[0].geometry.location);
-		User.findOneAndUpdate({_id: req.user.id}, 
-              { $set: { firstname: 	req.body.firstname,
-              			lastname: 	req.body.lastname,
-              			address: 	req.body.address,
-              			city	: 	req.body.city,
-              			state 	: 	req.body.state,
-              			zipcode : 	req.body.zipcode,
-              			email	: 	req.body.email,
-              			phonenum: 	req.body.phonenum,
-              			radius	: 	req.body.radius,
+		User.findOneAndUpdate({_id: 			req.user.id}, 
+              { $set: { firstname: 				req.body.firstname,
+              			lastname: 				req.body.lastname,
+              			address: 				req.body.address,
+              			city	: 				req.body.city,
+              			state 	: 				req.body.state,
+              			zipcode : 				req.body.zipcode,
+              			email	: 				req.body.email,
+              			phonenum: 				req.body.phonenum,
+              			radius	: 				req.body.radius,
               			rideTypeRoad: 			req.body.rideTypeRoad,
 					    rideTypeMountain: 		req.body.rideTypeMountain,
 					    rideTypeOther: 			req.body.rideTypeOther,
 					    difficultyEasy: 		req.body.difficultyEasy,
 					    difficultyIntermediate: req.body.difficultyIntermediate,
 					    difficultyHard: 		req.body.difficultyHard,
-              			coordinates: data.results[0].geometry.location 	
+              			coordinates: 			data.results[0].geometry.location 	
               		   } 
               }, 	
             function(error, user) {
