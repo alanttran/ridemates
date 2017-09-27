@@ -142,33 +142,33 @@ class Results extends React.Component {
 		let recipientEmails = [];
 		this.state.checked.map(id => {
 			let recipient = this.state.matchedPeople.filter((person) => { return (person.id === id);})
-			recipientEmails.push(recipient[0].email);
-			recipientEmails.join();
+			recipientEmails.push(recipient[0].email);			
 		})
+		let recipientString  = recipientEmails.join();
 
 		let emailObject = {
 			title: `Request to ride at ${this.state.where}`,
-			body: `Hello! [sender] would like to ride with you. If you would like to join, please meet at ${this.state.address} at ${this.state.time}`,
-			recipients: recipientEmails,
+			body: `Hello! [sender] would like to ride with you. If you would like to join, please meet here: ${this.state.address}`,
+			recipients: recipientString
 		}
 
-		API.selectedPeople(emailObject);
+		API.emailRequest(emailObject);
 	}
 
 
 	render() {
 		const classes = this.props.classes;
 		const { all } = this.state;
-		console.log('props', this.props);
-		console.log("Results ", this.props.data);
+		// console.log('props', this.props);
+		// console.log("Results ", this.props.data);
 		if(this.state.matchedPeople.length === 0) {
-			return <div>Oops! Sorry, we did not find any matching ridemates in {this.state.where} area </div>;
+			return <div>Oops! Sorry, we did not find any matching ridemates in {this.state.where}</div>;
 		}
 
 		return (
 			<div className={classes.root}>
 				<h4>The Ridemates search shows that people listed below have similar insterest in biking as you. </h4>
-				<p> Please select the check box on right and select date and time to message them.</p>
+				<p> Please select the check box on right and add a date and time to meet them. We'll email them for you</p>
 
 				<FormControlLabel
 				    control={

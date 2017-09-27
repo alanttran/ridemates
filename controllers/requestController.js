@@ -24,7 +24,9 @@ function isLoggedIn(req, res, next) {
 		console.log('user: ', req.user);
 		return next();
 	}
-	res.redirect('http://www.google.com');
+	else {
+		// res.send(401)
+	}
 };
 
 // function isLoggedIn(req, res, next) {

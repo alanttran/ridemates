@@ -44,9 +44,8 @@ router.post('/', (req, res) => {
 	const rideType = req.body.biketype;
 	const difficulty = req.body.difficulty;
 	console.log('searchAddress: ', searchAddress);
-	console.log("es6", [rideType]);
-	console.log("es5", rideType);
 	geocoder.geocode(searchAddress, function(err, data) {
+		if (err) throw err;
 		console.log('data.results.geometry: ', data.results[0].geometry.location);
 		searchCoordinates = data.results[0].geometry.location;
 		User.find({ 
