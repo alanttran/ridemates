@@ -51,42 +51,47 @@ class Results extends React.Component {
 		super(props);
 
 		this.state = {
-			matchedPeople: [],
+			where: this.props.data.where,
+			matchedPeople: this.props.data.results,
 			matchedPeopleIds: [],
 			Checkboxed: [0, 3],
 			allChecked:false,
 			checked:[],
 			message: '',
 		    time: '',
-		    addr: '',
+		    address: ''
 		};
 	}
 //checked items array
 
-	// Getting all quotes when the component mounts
+	// // Getting all quotes when the component mounts
 	// componentDidMount() {
-	// 	this.getMatchedPeople();
+	// 	this.getMatchedPeople(this.props.data);
 	// }
 
-	// getMatchedPeople() {
-	// 	let newMatchedPeople = [
-	// 		{id: 0, firstName:"Jaya", lastName:"Arasalike", email:"xyz@gmail.com", imageUrl:""},
-	// 		{id: 1, firstName:"Fabio", lastName:"Aiello", email:"abc@gmail.com", imageUrl: ""},
-	// 		{id: 2, firstName:"Alan", lastName:"Tran", email: "cde@gmail.com", imageUrl:""},
-	// 		{id: 3, firstName:"Waqas", lastName:"Alsubayee", email:"efg@gmail.com", imageUrl:""},
+	// getMatchedPeople(results) {
+	// // 	let newMatchedPeople = [
+	// // 		{id: 0, firstName:"Jaya", lastName:"Arasalike", email:"xyz@gmail.com", imageUrl:""},
+	// // 		{id: 1, firstName:"Fabio", lastName:"Aiello", email:"abc@gmail.com", imageUrl: ""},
+	// // 		{id: 2, firstName:"Alan", lastName:"Tran", email: "cde@gmail.com", imageUrl:""},
+	// // 		{id: 3, firstName:"Waqas", lastName:"Alsubayee", email:"efg@gmail.com", imageUrl:""},
 
-	// 	];
+	// // 	];
 
-	// 	//let newMatchedPeople = this.props.matchedPeople;
+	// 	let newMatchedPeople = results;
 
 	// 	let newMatchedPeopleIds = [];
 	// 	newMatchedPeople.map(person => { newMatchedPeopleIds.push(person.id) })
 
 	// 	this.setState({
-	// 		matchedPeople: newMatchedPeople,
+	// 		matchedPeople: this.props.data,
 	// 		matchedPeopleIds: newMatchedPeopleIds,
 	// 	})
+	// 	console.log('in matchedPeople: ----------------------------');
+	// 	console.log('MatchedPeople: ', this.state.matchedPeople);
+	// 	console.log('in matchedPeople: ----------------------------');
 	// }
+
 	handleToggle(value) {
 	// const { checked } = this.state; //state has checked property, we are taking it out
 		const currentIndex = this.state.checked.indexOf(value); // 0
@@ -142,8 +147,8 @@ class Results extends React.Component {
 		})
 
 		let emailObject = {
-			title: `Request to ride at ${this.props.where} on ${this.props.when}`,
-			body: `Hello! [sender] would like to ride with you. If you would like to join, please meet at ${this.state.addr} at ${this.state.time}`,
+			title: `Request to ride at ${this.state.where}`,
+			body: `Hello! [sender] would like to ride with you. If you would like to join, please meet at ${this.state.address} at ${this.state.time}`,
 			recipients: recipientEmails,
 		}
 
@@ -157,7 +162,7 @@ class Results extends React.Component {
 		console.log('props', this.props);
 		console.log("Results ", this.props.data);
 		if(this.state.matchedPeople.length === 0) {
-			return <div>Oops! Sorry, we did not find any matching ridemates in {this.props.where} area </div>;
+			return <div>Oops! Sorry, we did not find any matching ridemates in {this.state.where} area </div>;
 		}
 
 		return (
@@ -177,9 +182,9 @@ class Results extends React.Component {
 				/>
 				<List>
 					{this.state.matchedPeople.map(person => (
-						<ListItem key={person.id} dense button className={classes.listItem}>					 
+						<ListItem key={person._id} dense button className={classes.listItem}>					 
 							<Avatar alt=  "`${person.firstName}`" src= { `${person.imageUrl}` }/>
-							<ListItemText primary={`${person.firstName}  ${person.lastName}`}/>
+							<ListItemText primary={`${person.firstname}  ${person.lastname}`}/>
 							<ListItemSecondaryAction>
 							   <Checkbox
 							    onClick={() => this.handleToggle(person.id)}
@@ -195,7 +200,7 @@ class Results extends React.Component {
 						<CardContent>
 				      			        
 							<TextField
-								value={`Hello! Would you like to join me on a bike ride at ${this.props.where} on ${this.props.when} `}
+								value={`Hello! Would you like to join me on a bike ride at ${this.state.where}?`}
 								multiline
 								className={classes.input}
 								disabled
@@ -206,7 +211,7 @@ class Results extends React.Component {
 								}}
 							/> 
 					        
-					          
+					          {/*
 							<TextField
 								id="time"
 								name="time"
@@ -217,17 +222,17 @@ class Results extends React.Component {
 								InputLabelProps={{
 								shrink: true,
 								}}
-							/>
+							/>*/}
 
 					        <TextField
-					            label="Address of the meeting place"
-					            placeholder="Placeholder"
+					            label="Meeting place"
+					            placeholder="Enter time and address"
 					            id="message-addr"
-					            name="addr"
+					            name="address"
 					            multiline
 					            className={classes.textField}
 					            value={this.state.username}
-					            onChange={this.handleChange('time')}  
+					            onChange={this.handleChange('address')}  
 					            margin="normal"
 					        />
 				        </CardContent>
