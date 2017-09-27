@@ -65,7 +65,11 @@ router.post('/', (req, res) => {
             		}
             	});
             	console.log('resultArray: ', resultArray)
-                res.json(resultArray);
+            	let newData = { 
+            			where: searchAddress,
+            			results: resultArray
+            	};
+                res.json(newData);
             }).catch(function(err) {
                 res.json(err);
             });
