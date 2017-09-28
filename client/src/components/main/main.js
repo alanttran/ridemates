@@ -77,23 +77,23 @@ class Main extends Component {
     console.log("in signup submitchange");
     const searchObj = this.state;
 
-    if(this.state.biketype == "Road Bike") {
+    if(this.state.biketype === "Road Bike") {
       searchObj.biketype = "rideTypeRoad"
     } 
-    else if(this.state.biketype == "Mountain Bike") {
+    else if(this.state.biketype ===  "Mountain Bike") {
       searchObj.biketype = "rideTypeMountain"
     }
-    else if(this.state.biketype == "Hybrid") {
+    else if(this.state.biketype === "Hybrid") {
       searchObj.biketype = "rideTypeOther"
     };
 
-    if(this.state.difficulty == "Easy (15 - 25 miles)") {
+    if(this.state.difficulty === "Easy (15 - 25 miles)") {
       searchObj.difficulty = "difficultyEasy"
     } 
-    else if(this.state.difficulty == "Intermediate (25 - 45 miles)") {
+    else if(this.state.difficulty === "Intermediate (25 - 45 miles)") {
       searchObj.difficulty = "difficultyIntermediate"
     }
-    else if(this.state.difficulty == "Hard (Above 50 miles)") {
+    else if(this.state.difficulty === "Hard (Above 50 miles)") {
       searchObj.difficulty = "difficultyHard"
     };
 

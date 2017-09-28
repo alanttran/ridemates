@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import Button from 'material-ui/Button';
-import { FormGroup, FormControlLabel } from 'material-ui/Form';
+import { FormGroup, FormControl, FormControlLabel } from 'material-ui/Form';
 import API from '../../utils/API';
 import Checkbox from 'material-ui/Checkbox';
+import Typography from 'material-ui/Typography';
 
 import TextField from 'material-ui/TextField';
 import { indigo } from 'material-ui/colors';
+
+import './profile.css';
+
 const primaryColor = "#F44336";
 
 const styles = theme => ({
@@ -32,8 +36,14 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
 
   },
-  button: {
+  formGroup:{
     margin: theme.spacing.unit,
+  },
+   formControl: {
+    margin: theme.spacing.unit,
+  },
+  button: {
+    width: '100%'
   },
   primaryColor: {
       background: primaryColor 
@@ -45,15 +55,15 @@ class Profile extends Component {
   //const bull = <span className={classes.bullet}>•</span>;
 
   state = {
-    firstname: 'FakeBob',
-    lastname: '',
-    address: '',
-    city: '',
+    firstname: 'SpongeBob',
+    lastname: 'Squarepants',
+    address: 'Pineapple',
+    city: 'Bikini Bottom',
     state: '',
     zipcode: '',
     email: '',
     phonenum: '',
-    radius: '',
+    radius: 15,
     rideTypeRoad: true,
     rideTypeMountain: false,
     rideTypeOther: false,
@@ -124,40 +134,42 @@ class Profile extends Component {
   	const classes = this.props.classes;
   return (
     <div>
-      <Card className={classes.card}>
-      	<CardHeader style={styles.primaryColor} className={classes.title}
-			title = "User Profile"
-        />
-
-        <CardContent>
-          
+         <div className="rm-profile-name-container">
+         <br/><br/>
+           <Typography type="display1" color="inherit" >
+            Profile
+           </Typography>
+           <FormControl className={classes.formControl}>
+             <TextField
+              
+              id="firstname"
+              name="firstname"
+              label="First Name"
+              className={classes.textField}
+                value={this.state.firstname}
+                onChange={this.handleChange('firstname')}
+              placeholder="First Name"
+              margin="normal"
+            />
+          </FormControl>
+          <FormControl className={classes.formControl}>
           <TextField
-	          required
-            id="firstname"
-	          name="firstname"
-	          label="Firstname"
-	          className={classes.textField}
-          	  value={this.state.firstname}
-          	  onChange={this.handleChange('firstname')}
-	          
-	          placeholder="Firstname"
-	          
-	          margin="normal"
-          />
-          <TextField
-	          required
+            
             id="lastname"
-	          name="lastname"
-	          label="Lastname"
-	          className={classes.textField}
-          	  value={this.state.lastname}
-          	  onChange={this.handleChange('lastname')}
-	          placeholder="Lastname"
-	          
-	          margin="normal"
+            name="lastname"
+            label="Last Name"
+            className={classes.textField}
+              value={this.state.lastname}
+              onChange={this.handleChange('lastname')}
+            placeholder="Last Name"
+            
+            margin="normal"
           />
+          </FormControl>
+         </div> 
+         <div className="rm-profile-address-container">
+         <FormControl className={classes.formControl}>
           <TextField
-	          required
             id="address"
 	          name="address"
 	          label="Address"
@@ -168,8 +180,10 @@ class Profile extends Component {
 	          
 	          margin="normal"
           />
+          </FormControl>
+          <FormControl className={classes.formControl}>
           <TextField
-	          required
+	          
             id="city"
 	          name="city"
 	          label="City"
@@ -180,8 +194,10 @@ class Profile extends Component {
 	          
 	          margin="normal"
           />
+          </FormControl>
+          <FormControl className={classes.formControl}>
           <TextField
-	          required
+	          
             id="state"
 	          name="state"
 	          label="State"
@@ -192,8 +208,10 @@ class Profile extends Component {
 	          
 	          margin="normal"
           />
+          </FormControl>
+          <FormControl className={classes.formControl}>
           <TextField
-	          required
+	          
             id="zipcode"
 	          name="zipcode"
 	          label="Zipcode"
@@ -204,8 +222,10 @@ class Profile extends Component {
 	          
 	          margin="normal"
           />
+          </FormControl>
+          <FormControl className={classes.formControl}>
           <TextField
-	          required
+	          
             id="email"
 	          name="email"
 	          label="Email"
@@ -216,8 +236,10 @@ class Profile extends Component {
 	          
 	          margin="normal"
           />
+          </FormControl>
+          <FormControl className={classes.formControl}>
           <TextField
-	          required
+	          
             id="phonenum"
 	          name="phonenum"
 	          label="Phone Number"
@@ -228,11 +250,18 @@ class Profile extends Component {
 	          
 	          margin="normal"
           />
+          </FormControl>
+          </div>
+          <br/><br/><br/>
+          <Typography type="display1" color="inherit" >
+            Biking Settings
+           </Typography>
+          <FormControl className={classes.formControl}>
           <TextField
-            required
+            
             id="radius"
             name="radius"
-            label="Radius of riding area"
+            label="Riding Area Radius (miles)"
             className={classes.textField}
               value={this.state.radius}
               onChange={this.handleChange('radius')}
@@ -240,6 +269,8 @@ class Profile extends Component {
             
             margin="normal"
           />
+          </FormControl><br/><br/><br/>
+          <div className="rm-profile-biking-settings">
           <FormGroup>
             Type
 
@@ -275,7 +306,7 @@ class Profile extends Component {
             />
             
             
-          </FormGroup><br/>
+          </FormGroup><br/> &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
           <FormGroup>
             Difficulty
 
@@ -312,16 +343,12 @@ class Profile extends Component {
             
             
           </FormGroup>
-        </CardContent>
-
-        <CardActions>
+          </div><br/><br/>
           <Button raised  color="primary" 
                           className={classes.button}
                           onClick={this.submitChange}
-                          >Submit
+                          >Save
           </Button>
-        </CardActions>
-      </Card>
     </div>
   );
 }

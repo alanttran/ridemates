@@ -6,9 +6,12 @@ import './profile.css';
 class ProfilePage extends Component{
 	render(){
 		return(
-			
-			<Profile></Profile>
-			
+			<div className="rm-profile-container">
+				<div className="rm-profile-left-panel">
+					<Profile></Profile>
+				</div>
+				<img className="" src="./images/biker-04.png"/>
+			</div>
 		)
 		
 	}

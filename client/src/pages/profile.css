@@ -1,0 +1,10 @@
+.rm-profile-left-panel{
+	max-width: 500px;
+}
+.rm-profile-container{
+	display: flex;
+	max-width: 60%;
+	margin: 0 auto;
+	justify-content: center;
+	align-items: center;
+}
