@@ -50,47 +50,18 @@ class Results extends React.Component {
 	constructor(props){
 		super(props);
 
+		let tempMatchedPeopleIds = []
+		this.props.data.results.map(person => {tempMatchedPeopleIds.push(person._id) });
 		this.state = {
 			where: this.props.data.where,
 			matchedPeople: this.props.data.results,
-			matchedPeopleIds: [],
-			Checkboxed: [0, 3],
-			allChecked:false,
+			matchedPeopleIds: tempMatchedPeopleIds,
 			checked:[],
 			message: '',
 		    time: '',
 		    address: ''
-		};
+		};	
 	}
-//checked items array
-
-	// // Getting all quotes when the component mounts
-	// componentDidMount() {
-	// 	this.getMatchedPeople(this.props.data);
-	// }
-
-	// getMatchedPeople(results) {
-	// // 	let newMatchedPeople = [
-	// // 		{id: 0, firstName:"Jaya", lastName:"Arasalike", email:"xyz@gmail.com", imageUrl:""},
-	// // 		{id: 1, firstName:"Fabio", lastName:"Aiello", email:"abc@gmail.com", imageUrl: ""},
-	// // 		{id: 2, firstName:"Alan", lastName:"Tran", email: "cde@gmail.com", imageUrl:""},
-	// // 		{id: 3, firstName:"Waqas", lastName:"Alsubayee", email:"efg@gmail.com", imageUrl:""},
-
-	// // 	];
-
-	// 	let newMatchedPeople = results;
-
-	// 	let newMatchedPeopleIds = [];
-	// 	newMatchedPeople.map(person => { newMatchedPeopleIds.push(person.id) })
-
-	// 	this.setState({
-	// 		matchedPeople: this.props.data,
-	// 		matchedPeopleIds: newMatchedPeopleIds,
-	// 	})
-	// 	console.log('in matchedPeople: ----------------------------');
-	// 	console.log('MatchedPeople: ', this.state.matchedPeople);
-	// 	console.log('in matchedPeople: ----------------------------');
-	// }
 
 	handleToggle(value) {
 	// const { checked } = this.state; //state has checked property, we are taking it out
@@ -105,28 +76,17 @@ class Results extends React.Component {
 
 		this.setState({
 			checked: newChecked,
-		}, this.setSelectAllCheckbox);
+		}/*, this.setSelectAllCheckbox*/);
 
 	};
 
-	setSelectAllCheckbox() {
 
-		if(this.state.matchedPeopleIds.length === this.state.checked.length) {
-		  this.setState({ allchecked: true})
-		  this.selectAllCheckbox.checked = true;
+	handleAllToggle(isAllChecked) {
+		if (!isAllChecked.isAllChecked) { //means this.state.allchecked === false
+			this.setState({checked: this.state.matchedPeopleIds});
 		}
 		else {
-		  this.setState({ allchecked: false})
-		  this.selectAllCheckbox.checked = false;
-		}
-	}
-
-	handleAllToggle() {
-		if(!this.state.allChecked){ //means this.state.allchecked === false
-		this.setState({checked: this.state.matchedPeopleIds, allChecked: true});
-		}
-		else {
-		this.setState({checked: [], allChecked: false})
+			this.setState({checked: []})
 		}
 	}
 
@@ -141,7 +101,7 @@ class Results extends React.Component {
 		
 		let recipientEmails = [];
 		this.state.checked.map(id => {
-			let recipient = this.state.matchedPeople.filter((person) => { return (person.id === id);})
+			let recipient = this.state.matchedPeople.filter((person) => { return (person._id === id);})
 			recipientEmails.push(recipient[0].email);			
 		})
 		let recipientString  = recipientEmails.join();
@@ -165,6 +125,9 @@ class Results extends React.Component {
 			return <div>Oops! Sorry, we did not find any matching ridemates in {this.state.where}</div>;
 		}
 
+	    // Recalculate if everything is checked each render, instead of storing it
+	    var isAllChecked = this.state.checked.length === this.state.matchedPeopleIds.length;		
+
 		return (
 			<div className={classes.root}>
 				<h4>The Ridemates search shows that people listed below have similar insterest in biking as you. </h4>
@@ -173,9 +136,8 @@ class Results extends React.Component {
 				<FormControlLabel
 				    control={
 						<Checkbox
-							onClick={() => this.handleAllToggle()}
-							checked={this.state.allChecked}
-							ref = { (element) => { this.selectAllCheckbox = element; } }
+							onClick={() => this.handleAllToggle({isAllChecked})}
+							checked={isAllChecked}
 						/>
 				    }
 				    label="Select All"
@@ -183,12 +145,12 @@ class Results extends React.Component {
 				<List>
 					{this.state.matchedPeople.map(person => (
 						<ListItem key={person._id} dense button className={classes.listItem}>					 
-							<Avatar alt=  "`${person.firstName}`" src= { `${person.imageUrl}` }/>
+							<Avatar alt={`${person.firstname}`} src= {`${person.imageUrl}` }/>
 							<ListItemText primary={`${person.firstname}  ${person.lastname}`}/>
 							<ListItemSecondaryAction>
 							   <Checkbox
-							    onClick={() => this.handleToggle(person.id)}
-							    checked={this.state.checked.includes(person.id)}
+							    onClick={() => this.handleToggle(person._id)}
+							    checked={this.state.checked.includes(person._id)}
 							/>
 							</ListItemSecondaryAction>
 						</ListItem>
