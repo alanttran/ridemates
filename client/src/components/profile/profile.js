@@ -101,7 +101,7 @@ class Profile extends Component {
 
   handleChange = name => event => {
     console.log(name);
-    this.setState({ [name]: event.target.value });
+    this.setState({ [name]: event.target.value }); 
   };
 
    handleCheckboxChange = name => (event, checked) => {
@@ -113,7 +113,9 @@ class Profile extends Component {
     event.preventDefault();
     console.log('state: ', this.state);
 
-    API.createUserProfile(this.state);
+    API.createUserProfile(this.state).then(function(response){
+      window.location.href = '/results';
+    });
 
     // this.setState = {
     //   firstname: '',

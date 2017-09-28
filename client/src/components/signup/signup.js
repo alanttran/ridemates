@@ -33,12 +33,20 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
 
   },
+  button:{
+    width:'100%'
+  },
   primaryColor: {
       background: primaryColor
    },
 });
 
 class Signup extends Component {
+
+  constructor(props) {
+      super(props);
+  }
+
 	state = {
     username: 'Bat in the Hat',
     password: 'Bat',
@@ -61,6 +69,9 @@ class Signup extends Component {
 
     API.createUser({  username, 
                       password
+    }).then(function(response){
+      //this.props.parent.parent.setState({isLoggedIn: true})
+      window.location.href = '/profile';
     });
 
     this.setState({
@@ -113,12 +124,13 @@ class Signup extends Component {
 	          placeholder="Confirm Password"
 	          margin="normal"
           /><br/><br/>
-          <Button raised color="primary" 
-                  className={classes.button}
-                  onClick={this.submitChange}
-                  >Sign Up
-          </Button>
+            <Button raised color="primary" 
+                    className={classes.button}
+                    onClick={this.submitChange}
+                    >Sign Up
+            </Button>
           </div>
+
     </div>
   );
 }

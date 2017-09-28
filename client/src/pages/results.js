@@ -19,4 +19,4 @@ class ResultsPage extends Component{
 	}
 }
 
-export default ResultsPage;
+export default ResultsPage; 

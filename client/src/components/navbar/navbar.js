@@ -32,7 +32,7 @@ function signup(event) {
   console.log(event.currentTarget.getAttribute('data-something'));
 }
 
-function Navbar(props) {
+function Navbar(props) { 
   const classes = props.classes;
   return (
     <div className={classes.root}>

@@ -62,6 +62,8 @@ class Login extends Component {
 
     API.loginUser({  username, 
                       password
+    }).then(function(response){
+      window.location.href = '/results';
     });
 
     this.setState({

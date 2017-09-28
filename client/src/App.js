@@ -4,10 +4,11 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 
 import LandingPage from './pages/landing';
-import LoginPage from './pages/login'
-import ProfilePage from './pages/profile'
-import ResultsPage from './pages/results'
-import SignupPage from './pages/signup'
+import LoginPage from './pages/login';
+import ProfilePage from './pages/profile';
+import ResultsPage from './pages/results';
+import SignupPage from './pages/signup';
+import EmailConfirmation from './pages/email-confirmation'
 
 import Button from 'material-ui/Button';
 import AppBar from 'material-ui/AppBar';
@@ -20,12 +21,18 @@ class App extends Component {
 
   state = {
     matchedPeople: [],
+    isLoggedIn: false
   }
 
   getMatchedPeople = function(where, when, biketype, hardness) {
     API.getMatchedPeople(where, when, biketype, hardness).then((results) => {
       this.setState({ matchedPeople: results });
     });
+  }
+
+  logOutUser(){
+    API.logOutUser();
+    this.setState({isLoggedIn:false});
   }
 
   render() {
@@ -39,8 +46,19 @@ class App extends Component {
               <Typography className="rm-flex-auto" type="title" color="inherit" >
                 <Link to="" className="rm-appbar-title-link">RideMates</Link>
               </Typography>
-              <Link to="/login" className="rm-appbar-link"><Button className="rm-login-button" color="contrast">Login</Button></Link>
-              <Link to="/signup" className="rm-appbar-link"><Button className="rm-signup-button" color="contrast">Sign Up</Button></Link>
+              { !this.isLoggedIn ?
+                <div>
+                <Link to="/login" className="rm-appbar-link"><Button className="rm-login-button" color="contrast">Login</Button></Link>
+                <Link to="/signup" className="rm-appbar-link"><Button className="rm-signup-button" color="contrast">Sign Up</Button></Link>
+                </div>
+                :
+                <div>
+                  <Link to="/profile" className="rm-appbar-link"><Button className="rm-signup-button" color="contrast">Profile</Button></Link>
+                  <Link to="/" className="rm-appbar-link"><Button className="rm-signup-button" color="contrast" onClick={this.logOutUser}>Logout</Button></Link>
+                </div>
+              }
+              
+              
             </Toolbar>
           </AppBar>
           
@@ -48,6 +66,7 @@ class App extends Component {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={SignupPage} />
           <Route exact path="/profile" component={ProfilePage} />
+          <Route exact path="/confirmation" component={EmailConfirmation} />
           <Route exact path="/results/:where/:biketype/:difficulty" component={ResultsPage} matchedPeople = { this.state.matchedPeople} />
         </div>
         
