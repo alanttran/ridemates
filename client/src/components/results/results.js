@@ -10,6 +10,8 @@ import Input from 'material-ui/Input';
 import TextField from 'material-ui/TextField';
 import Card, { CardActions, CardContent, CardHeader, CardTitle, CardText } from 'material-ui/Card';
 import API from "../../utils/API";
+import Dialog, { DialogTitle } from 'material-ui/Dialog';
+
 
 function importAll(r) {
 	console.log(r)
@@ -60,7 +62,9 @@ class Results extends React.Component {
 			message: '',
 		    time: '',
 		    address: '',
-		    currentUser: '' 
+		    currentUser: '',
+		    confirmationModalOpen: false,
+		    errorModalOpen: false
 		};	
 	}
 
@@ -104,34 +108,47 @@ class Results extends React.Component {
 	    });
 	};
 
+	dismissModal = () => {
+		this.setState({confirmationModalOpen: false, errorModalOpen: false})
+	}
+
 	//backend is expecting a email Object for selected people and 
 	submitChange =() => {
 		
 		let recipientEmails = [];
 
-		this.state.checked.map(id => {
+		if(this.state.checked.length > 0){
+			this.state.checked.map(id => {
 			let recipient = this.state.matchedPeople.filter((person) => { 
 				return (person._id === id);
 			})
-			recipientEmails.push(recipient[0].email);			
-		})
+				recipientEmails.push(recipient[0].email);			
+			})
 
-		let recipientString  = recipientEmails.join();
+			let recipientString  = recipientEmails.join(); 
 
-		let emailObject = {
-			title: `Request to ride at ${this.state.where}`,
-			body: `Hello! ${this.state.currentUser.firstname} would like to ride with you. If you would like to join, please meet here: ${this.state.address}`,
-			recipients: recipientString
+			let emailObject = {
+				title: `Request to ride at ${this.state.where}`,
+				body: `Hello! ${this.state.currentUser.firstname} would like to ride with you. If you would like to join, please meet here: ${this.state.address}`,
+				recipients: recipientString
+			}
+
+			API.emailRequest(emailObject).then((response) => {
+				console.log("results checked people" + this.state.checked.length);
+				this.setState({confirmationModalOpen: true }) 
+			});
+
+		}
+		else{
+			this.setState({errorModalOpen: true }) 
 		}
 
-		API.emailRequest(emailObject).then((response) => {
-			// modal
-		});
+		
 	}
 
 
 	render() {
-		const classes = this.props.classes;
+		const classes = this.props.classes; 
 		const { all } = this.state;
 		// console.log('props', this.props);
 		// console.log("Results ", this.props.data);
@@ -223,7 +240,20 @@ class Results extends React.Component {
 			      
 			      </Card>
 
-			    </div>  
+			    </div> 
+
+			    <Dialog open={this.state.confirmationModalOpen}>
+			        <DialogTitle>Message Sent! Your ridemates should respond shortly!</DialogTitle>
+			        <div>
+			          <Button raised color="primary" className={classes.button} onClick={this.dismissModal} >Cool!</Button>
+			        </div>
+			    </Dialog> 
+			    <Dialog open={this.state.errorModalOpen}>
+			        <DialogTitle>Please select a ridemate to send an email</DialogTitle>
+			        <div>
+			          <Button raised color="primary" className={classes.button} onClick={this.dismissModal} >Okay</Button>
+			        </div>
+			    </Dialog> 
       		</div>
 
 		);
