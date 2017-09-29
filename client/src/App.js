@@ -8,7 +8,8 @@ import LoginPage from './pages/login';
 import ProfilePage from './pages/profile';
 import ResultsPage from './pages/results';
 import SignupPage from './pages/signup';
-import EmailConfirmation from './pages/email-confirmation'
+import EmailConfirmation from './pages/email-confirmation';
+import EmailRefusal from './pages/email-refusal';
 
 import Button from 'material-ui/Button';
 import AppBar from 'material-ui/AppBar';
@@ -82,6 +83,7 @@ class App extends Component {
             render={({ history }) => <ProfilePage parent={this} history={history} />}
           />
           <Route exact path="/confirmation" component={EmailConfirmation} />
+          <Route exact path="/refusal" component={EmailRefusal} />
           <Route exact path="/results/:where/:biketype/:difficulty" component={ResultsPage} matchedPeople = { this.state.matchedPeople} />
         </div>
         

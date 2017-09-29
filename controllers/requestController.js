@@ -60,9 +60,14 @@ router.get('/allrequests', isLoggedIn, async (req, res) => {
 // 	displaying the thank you page
 //=================================================
 
-router.get('/:requestId/:choice', isLoggedIn, (req, res) => {
+router.get('/:requestId/yes', (req, res) => {
 	console.log('in /api/request GET (thanks) route');
-	res.redirect('/email-confirmation');
+	res.redirect('/confirmation');
+});
+
+router.get('/:requestId/no', (req, res) => {
+	console.log('in /api/request GET (thanks) route');
+	res.redirect('/refusal');
 });
 
 //=================================================
