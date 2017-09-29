@@ -59,8 +59,16 @@ class Results extends React.Component {
 			checked:[],
 			message: '',
 		    time: '',
-		    address: ''
+		    address: '',
+		    currentUserId: '' 
 		};	
+	}
+
+	componentWillMount(){
+		API.userProfile().then((res)=>{
+			console.log(res.data._id);
+			this.setState({currentUserId: res.data._id })
+		})
 	}
 
 	handleToggle(value) {
@@ -100,10 +108,14 @@ class Results extends React.Component {
 	submitChange =() => {
 		
 		let recipientEmails = [];
+
 		this.state.checked.map(id => {
-			let recipient = this.state.matchedPeople.filter((person) => { return (person._id === id);})
+			let recipient = this.state.matchedPeople.filter((person) => { 
+				return (person._id === id);
+			})
 			recipientEmails.push(recipient[0].email);			
 		})
+
 		let recipientString  = recipientEmails.join();
 
 		let emailObject = {
@@ -112,7 +124,9 @@ class Results extends React.Component {
 			recipients: recipientString
 		}
 
-		API.emailRequest(emailObject);
+		API.emailRequest(emailObject).then((response) => {
+			// modal
+		});
 	}
 
 
@@ -143,7 +157,10 @@ class Results extends React.Component {
 				    label="Select All"
 				/>
 				<List>
-					{this.state.matchedPeople.map(person => (
+					{	this.state.matchedPeople.filter(person => 
+							 person._id != this.state.currentUserId
+						).map(person => (
+
 						<ListItem key={person._id} dense button className={classes.listItem}>					 
 							<Avatar alt={`${person.firstname}`} src= {`${person.imageUrl}` }/>
 							<ListItemText primary={`${person.firstname}  ${person.lastname}`}/>
@@ -154,6 +171,7 @@ class Results extends React.Component {
 							/>
 							</ListItemSecondaryAction>
 						</ListItem>
+						
 					))}
 				</List>
 			
