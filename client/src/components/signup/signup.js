@@ -69,9 +69,13 @@ class Signup extends Component {
 
     API.createUser({  username, 
                       password
-    }).then(function(response){
+    }).then((response) => {
       //this.props.parent.parent.setState({isLoggedIn: true})
-      window.location.href = '/profile';
+      //window.location.href = '/profile';
+
+      this.props.parent.setState({isLoggedIn: true});
+      console.log('login this.props', this.props);
+      this.props.history.push('/profile');
       
     });
 

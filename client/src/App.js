@@ -24,6 +24,8 @@ class App extends Component {
     isLoggedIn: false
   }
 
+  
+
   handler() {
     this.setState({isLoggedIn: true})
   }
@@ -34,9 +36,12 @@ class App extends Component {
     });
   }
 
-  logOutUser(){
-    API.logOutUser();
-    this.setState({isLoggedIn:false});
+  logOutUser = event => {
+    event.preventDefault();
+    API.logoutUser();
+    console.log("isLoggedIn " + this.state.isLoggedIn);
+    this.setState({ isLoggedIn: false});
+    window.location.href = '/';
   }
 
   render() {
@@ -58,7 +63,7 @@ class App extends Component {
                 :
                 <div>
                   <Link to="/profile" className="rm-appbar-link"><Button className="rm-signup-button" color="contrast">Profile</Button></Link>
-                  <Link to="/" className="rm-appbar-link"><Button className="rm-signup-button" color="contrast" onClick={this.logOutUser}>Logout</Button></Link>
+                  <Button className="rm-signup-button" color="contrast" onClick={this.logOutUser}>Logout</Button>
                 </div>
               }
               
@@ -70,8 +75,12 @@ class App extends Component {
           <Route exact path="/login" 
             render={({ history }) => <LoginPage parent={this} history={history} />} 
           />
-          <Route exact path="/signup" component={SignupPage} />
-          <Route exact path="/profile" component={ProfilePage} />
+          <Route exact path="/signup" 
+            render={({ history }) => <SignupPage parent={this} history={history} />}
+          />
+          <Route exact path="/profile" 
+            render={({ history }) => <ProfilePage parent={this} history={history} />}
+          />
           <Route exact path="/confirmation" component={EmailConfirmation} />
           <Route exact path="/results/:where/:biketype/:difficulty" component={ResultsPage} matchedPeople = { this.state.matchedPeople} />
         </div>

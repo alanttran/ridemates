@@ -125,8 +125,10 @@ class Profile extends Component {
     event.preventDefault();
     console.log('state: ', this.state);
 
-    API.createUserProfile(this.state).then(function(response){
-      window.location.href = '/';
+    API.createUserProfile(this.state).then((response) => {
+      this.props.parent.setState({isLoggedIn: true});
+      console.log('login this.props', this.props);
+      this.props.history.push('/');
     });
 
     // this.setState = {

@@ -9,7 +9,7 @@ class SignupPage extends Component{
 		return(
 			<div className="rm-signup-page-container">
 				
-				<Signup></Signup>
+				<Signup history={this.props.history} parent={this.props.parent}></Signup>
 				<img className="rm-signup-page-image" src="./images/biker-01.png"/>
 			</div>
 			

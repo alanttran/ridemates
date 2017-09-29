@@ -8,7 +8,7 @@ class ProfilePage extends Component{
 		return(
 			<div className="rm-profile-container">
 				<div className="rm-profile-left-panel">
-					<Profile></Profile>
+					<Profile history={this.props.history} parent={this.props.parent}></Profile>
 				</div>
 				<img className="" src="./images/biker-04.png"/>
 			</div>
