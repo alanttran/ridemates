@@ -72,6 +72,7 @@ class Signup extends Component {
     }).then(function(response){
       //this.props.parent.parent.setState({isLoggedIn: true})
       window.location.href = '/profile';
+      
     });
 
     this.setState({

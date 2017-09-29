@@ -40,30 +40,46 @@ const styles = theme => ({
 });
 
 class Login extends Component {
-	state = {
+
+  // constructor(props){
+  //   super(props);
+
+    state = {
     username: 'Cat in the Hat',
     password: 'Cat',
     
   };
-
+ 
+ // this.submitChange = this.submitChange.bind(this);
+ //  }
+	
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,
     });
   };
 
-  submitChange = event => {
+  submitChange = (event) => {
     console.log('in login submitchange')
     event.preventDefault();
+    console.log(this);
     const username = this.state.username;
     const password = this.state.password;
     console.log('name: ', username);
     console.log('password: ', password);
-
+    console.log("this.props",this.props);
     API.loginUser({  username, 
                       password
-    }).then(function(response){
-      window.location.href = '/results';
+    }).then((response) => {
+      //this.props.handler(this.setState({isLoggedIn: true}));
+      console.log("this is this",this);
+      console.log(this.props);
+      console.log(this.props.parent);
+      // window.location.href = '/';
+      this.props.parent.setState({isLoggedIn: true});
+      console.log('login this.props', this.props);
+      this.props.history.push('/');
+      
     });
 
     this.setState({
@@ -79,7 +95,7 @@ class Login extends Component {
   return (
     <div>
           <div className="rm-signup-login-container">
-            <Typography className="rm-text-align-center" type="display1" color="inherit" >
+            <Typography className="rm-text-align-center" type="display1" color="inherit">
               Welcome Back! Let's Ride!
             </Typography><br/>
             <TextField

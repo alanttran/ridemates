@@ -24,6 +24,10 @@ class App extends Component {
     isLoggedIn: false
   }
 
+  handler() {
+    this.setState({isLoggedIn: true})
+  }
+
   getMatchedPeople = function(where, when, biketype, hardness) {
     API.getMatchedPeople(where, when, biketype, hardness).then((results) => {
       this.setState({ matchedPeople: results });
@@ -46,7 +50,7 @@ class App extends Component {
               <Typography className="rm-flex-auto" type="title" color="inherit" >
                 <Link to="" className="rm-appbar-title-link">RideMates</Link>
               </Typography>
-              { !this.isLoggedIn ?
+              { !this.state.isLoggedIn ?
                 <div>
                 <Link to="/login" className="rm-appbar-link"><Button className="rm-login-button" color="contrast">Login</Button></Link>
                 <Link to="/signup" className="rm-appbar-link"><Button className="rm-signup-button" color="contrast">Sign Up</Button></Link>
@@ -62,8 +66,10 @@ class App extends Component {
             </Toolbar>
           </AppBar>
           
-          <Route exact path="/" component={LandingPage} getMatchedPeople = { this.getMatchedPeople }/>
-          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/" component={LandingPage} getMatchedPeople = {this.getMatchedPeople}/>
+          <Route exact path="/login" 
+            render={({ history }) => <LoginPage parent={this} history={history} />} 
+          />
           <Route exact path="/signup" component={SignupPage} />
           <Route exact path="/profile" component={ProfilePage} />
           <Route exact path="/confirmation" component={EmailConfirmation} />

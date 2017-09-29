@@ -58,7 +58,7 @@ class Profile extends Component {
     firstname: 'SpongeBob',
     lastname: 'Squarepants',
     address: 'Pineapple',
-    city: 'Bikini Bottom',
+    city: 'San Diego',
     state: '',
     zipcode: '',
     email: '',
@@ -114,7 +114,7 @@ class Profile extends Component {
     console.log('state: ', this.state);
 
     API.createUserProfile(this.state).then(function(response){
-      window.location.href = '/results';
+      window.location.href = '/';
     });
 
     // this.setState = {
