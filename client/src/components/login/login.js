@@ -41,8 +41,8 @@ const styles = theme => ({
 
 class Login extends Component {
 	state = {
-    username: 'Cat in the Hat',
-    password: 'Cat',
+    username: '',
+    password: '',
     
   };
 
@@ -63,7 +63,7 @@ class Login extends Component {
     API.loginUser({  username, 
                       password
     }).then(function(response){
-      window.location.href = '/results';
+      window.location.href = '/profile';
     });
 
     this.setState({

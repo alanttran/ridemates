@@ -48,9 +48,9 @@ class Signup extends Component {
   }
 
 	state = {
-    username: 'Bat in the Hat',
-    password: 'Bat',
-    confirmpassword: 'Bat'
+    username: '',
+    password: '',
+    confirmpassword: ''
   };
 
   handleChange = name => event => {

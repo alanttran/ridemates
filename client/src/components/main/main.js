@@ -50,7 +50,7 @@ class Main extends Component {
   //const bull = <span className={classes.bullet}>•</span>;
 
   state = {
-    where: "San Diego, CA",
+    where: "",
     biketype: "",
     difficulty: "",
     
@@ -130,7 +130,7 @@ class Main extends Component {
               label="Where"
               className={classes.textField}
               value={this.state.where}
-              onChange={this.handleChange("where```")}
+              onChange={this.handleChange("where")}
               placeholder="Destination"
               margin="none"
               fullWidth

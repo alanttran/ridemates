@@ -46,7 +46,7 @@ class App extends Component {
               <Typography className="rm-flex-auto" type="title" color="inherit" >
                 <Link to="" className="rm-appbar-title-link">RideMates</Link>
               </Typography>
-              { !this.isLoggedIn ?
+              { !this.state.isLoggedIn ?
                 <div>
                 <Link to="/login" className="rm-appbar-link"><Button className="rm-login-button" color="contrast">Login</Button></Link>
                 <Link to="/signup" className="rm-appbar-link"><Button className="rm-signup-button" color="contrast">Sign Up</Button></Link>

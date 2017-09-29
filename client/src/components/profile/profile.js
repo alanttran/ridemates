@@ -55,20 +55,21 @@ class Profile extends Component {
   //const bull = <span className={classes.bullet}>•</span>;
 
   state = {
-    firstname: 'SpongeBob',
-    lastname: 'Squarepants',
-    address: 'Pineapple',
-    city: 'Bikini Bottom',
+    username: 'carne asada fries',
+    firstname: '',
+    lastname: '',
+    address: '',
+    city: '',
     state: '',
     zipcode: '',
     email: '',
     phonenum: '',
-    radius: 15,
-    rideTypeRoad: true,
+    radius: '',
+    rideTypeRoad: false,
     rideTypeMountain: false,
     rideTypeOther: false,
-    difficultyEasy: true,
-    difficultyIntermediate: true, 
+    difficultyEasy: false,
+    difficultyIntermediate: false, 
     difficultyHard: false 
   };
 
@@ -77,26 +78,37 @@ class Profile extends Component {
 
     API.userProfile()
      .then(res => {
-      console.log(res.data);
-        this.setState({ 
-          firstname:            res.data.firstname,
-          lastname:             res.data.lastname,
-          address:              res.data.address, 
-          city:                 res.data.city,
-          state:                res.data.state,
-          zipcode:              res.data.zipcode,
-          email:                res.data.email,
-          phonenum:             res.data.phonenum,
-          radius:               res.data.radius,
-          rideTypeRoad:         res.data.rideTypeRoad,
-          rideTypeMountain:     res.data.rideTypeMountain,
-          rideTypeOther:        res.data.rideTypeOther,
-          difficultyEasy:       res.data.difficultyEasy,
-          difficultyIntermediate: res.data.difficultyIntermediate, 
-          difficultyHard:        res.data.difficultyHard
+        console.log("res.data");
+        console.log(res.data.username);
+        if(res.data){
           
-        });
-      })
+          this.setState({ 
+            username:             res.data.username,
+            firstname:            res.data.firstname,
+            lastname:             res.data.lastname,
+            address:              res.data.address, 
+            city:                 res.data.city,
+            state:                res.data.state,
+            zipcode:              res.data.zipcode,
+            email:                res.data.email,
+            phonenum:             res.data.phonenum,
+            radius:               res.data.radius,
+            rideTypeRoad:         res.data.rideTypeRoad,
+            rideTypeMountain:     res.data.rideTypeMountain,
+            rideTypeOther:        res.data.rideTypeOther,
+            difficultyEasy:       res.data.difficultyEasy,
+            difficultyIntermediate: res.data.difficultyIntermediate, 
+            difficultyHard:        res.data.difficultyHard
+            
+          });
+        }
+        else{
+          console.log("no data")
+          console.log(res)
+          
+        }
+    })
+    
   }
 
   handleChange = name => event => {
@@ -139,7 +151,7 @@ class Profile extends Component {
          <div className="rm-profile-name-container">
          <br/><br/>
            <Typography type="display1" color="inherit" >
-            Profile
+            Profile - {this.state.username}
            </Typography>
            <FormControl className={classes.formControl}>
              <TextField
@@ -256,7 +268,7 @@ class Profile extends Component {
           </div>
           <br/><br/><br/>
           <Typography type="display1" color="inherit" >
-            Biking Settings
+            Biking Preferences
            </Typography>
           <FormControl className={classes.formControl}>
           <TextField
@@ -299,8 +311,8 @@ class Profile extends Component {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={this.state.rideTypeHybrid}
-                  onChange={this.handleCheckboxChange('rideTypeHybrid')}
+                  checked={this.state.rideTypeOther}
+                  onChange={this.handleCheckboxChange('rideTypeOther')}
                   value="hybrid"
                 />
               }
