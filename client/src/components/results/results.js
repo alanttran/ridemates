@@ -60,14 +60,14 @@ class Results extends React.Component {
 			message: '',
 		    time: '',
 		    address: '',
-		    currentUserId: '' 
+		    currentUser: '' 
 		};	
 	}
 
 	componentWillMount(){
 		API.userProfile().then((res)=>{
 			console.log(res.data._id);
-			this.setState({currentUserId: res.data._id })
+			this.setState({currentUser: res.data })
 		})
 	}
 
@@ -120,7 +120,7 @@ class Results extends React.Component {
 
 		let emailObject = {
 			title: `Request to ride at ${this.state.where}`,
-			body: `Hello! [sender] would like to ride with you. If you would like to join, please meet here: ${this.state.address}`,
+			body: `Hello! ${this.state.currentUser.firstname} would like to ride with you. If you would like to join, please meet here: ${this.state.address}`,
 			recipients: recipientString
 		}
 
@@ -158,7 +158,7 @@ class Results extends React.Component {
 				/>
 				<List>
 					{	this.state.matchedPeople.filter(person => 
-							 person._id != this.state.currentUserId
+							 person._id != this.state.currentUser._id
 						).map(person => (
 
 						<ListItem key={person._id} dense button className={classes.listItem}>					 
