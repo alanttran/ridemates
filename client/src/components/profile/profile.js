@@ -126,7 +126,7 @@ class Profile extends Component {
     console.log('state: ', this.state);
 
     API.createUserProfile(this.state).then(function(response){
-      window.location.href = '/results';
+      window.location.href = '/';
     });
 
     // this.setState = {
