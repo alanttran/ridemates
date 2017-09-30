@@ -7,15 +7,14 @@
     "node": "8.5.0"
   },
   "scripts": {
+    "start": "node server.js",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "webhookcommented": "lt -p 4000 -s waqasspecialwithalanandjaya",
     "webhook": "forever sendgrid_webhook.js",
     "dev": "concurrently --kill-others \"npm run start\" \"npm run start-server\" \"npm run webhook\"",
     "mydev": "concurrently --kill-others \"npm run start-server\" \"npm run webhook\"",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "start-server": "nodemon server.js",
-    "start": "node server.js"
+    "eject": "react-scripts eject"
   },
   "author": "Fabio Aiello, Waqas Alsubayee, Alan Tran, Jaya Arasalike",
   "license": "ISC",

@@ -82,9 +82,9 @@ passport.deserializeUser(User.deserializeUser());
 
 
 
-// app.get('*', function(request, response) {
-//   response.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
-// });
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+});
 
 // Start the server
 app.listen(PORT, function() {
