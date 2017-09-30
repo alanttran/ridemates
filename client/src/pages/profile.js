@@ -3,10 +3,16 @@ import Profile from '../components/profile';
 
 import './profile.css';
 
+let imgUrl = './images/bike-background-02.png';
+
+let bgImage = {
+  backgroundImage: 'url(' + imgUrl + ')'
+}
+
 class ProfilePage extends Component{
 	render(){
 		return(
-			<div className="rm-profile-container">
+			<div style={bgImage} className="rm-profile-container">
 				<div className="rm-profile-left-panel">
 					<Profile history={this.props.history} parent={this.props.parent}></Profile>
 				</div>

@@ -18,6 +18,12 @@ import Typography from 'material-ui/Typography';
 
 import API from './utils/API';
 
+let imgUrl = './images/biking-cover-3.png';
+
+let bgImage = {
+  backgroundImage: 'url(' + imgUrl + ')'
+}
+
 class App extends Component {
 
   state = {
@@ -46,12 +52,14 @@ class App extends Component {
     window.location.href = '/';
   }
 
+
+
   render() {
     return (
 
     <div className = "App">
       <Router>
-        <div>
+        <div className="rm-page-layout">
           <AppBar position="static">
             <Toolbar>
               <Typography className="rm-flex-auto" type="title" color="inherit" >
@@ -96,10 +104,35 @@ class App extends Component {
               data={this.state.result}
               />}
           /> 
+          <div className="rm-footer">
+            <ul className="rm-footer-item">
+              <li className="rm-footer-list-title">Features</li>
+              <li>About</li>
+              <li>Terms</li>
+              <li>Partners</li>
+              <li>Updates</li>
+            </ul>
+            <ul  className="rm-footer-item">
+              <li className="rm-footer-list-title">Details</li>
+              <li>Tools</li>
+              <li>Resources</li>
+            </ul>
+            <ul  className="rm-footer-item">
+              <li className="rm-footer-list-title">Technology</li>
+              <li>Usage</li>
+              <li>Products</li>
+              <li>Contracts</li>
+            </ul>
+            <ul  className="rm-footer-item">
+              <li className="rm-footer-list-title">FAQ</li>
+              <li>Questions</li>
+              <li>Answers</li>
+              <li>Contact Us</li>
+            </ul>
+          </div>
 
         </div>
-
-
+        
         
       </Router> 
     </div>

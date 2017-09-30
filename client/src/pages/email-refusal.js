@@ -2,11 +2,17 @@ import React, { Component } from "react";
 import Typography from 'material-ui/Typography';
 import './confirmation.css';
 
+let imgUrl = './images/bike-background-02.png';
+
+let bgImage = {
+  backgroundImage: 'url(' + imgUrl + ')'
+}
+
 class ConfirmationPage extends Component{
 	render(){
 		return(
 			
-			<div className="rm-signup-page-container">
+			<div style={bgImage} className="rm-signup-page-container">
 				
 				<Typography type="display1" color="inherit" >
 		            No problem!<br/> We look forward to the <br/>next time you ride!

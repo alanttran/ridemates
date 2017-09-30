@@ -149,7 +149,7 @@ class Profile extends Component {
   render() {
   	const classes = this.props.classes;
   return (
-    <div>
+    <div className="rm-profile-layout-container">
          <div className="rm-profile-name-container">
          <br/><br/>
            <Typography type="display1" color="inherit" >

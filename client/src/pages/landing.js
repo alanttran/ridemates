@@ -49,19 +49,19 @@ class LandingPage extends Component{
 							<Typography className="rm-text-align-center" type="display1" color="inherit" >
 								Efficient
 							</Typography>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit tempore consequuntur atque sit voluptatibus in voluptas distinctio quas est, perferendis, sunt assumenda. Eius voluptatum, magnam minus! Repellat quaerat aperiam itaque.</p>
+							<p>Orica-Scott's Esteban Chaves, winner in 2016, Bahrain-Merida's Vincenzo Nibali, winner in 2015, and and Quick-Step's Daniel Martin, winner in 2014, have all been confirmed by race organizer RCS Sport, with a series of other big-name contenders expected to challenge in the so-called "Race of the Falling Leaves". </p>
 						</Grid>
 						<Grid className="rm-landing-page-items" item xs={6} sm={4}>
 							<Typography className="rm-text-align-center" type="display1" color="inherit" >
 								Friendly
 							</Typography>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit tempore consequuntur atque sit voluptatibus in voluptas distinctio quas est, perferendis, sunt assumenda. Eius voluptatum, magnam minus! Repellat quaerat aperiam itaque.</p>
+							<p>Nairo Quintana (Movistar) will also ride after testing his form at the Tre Vali Varesine and Milano-Torino races on Tuesday and Thursday. Fellow Colombian Rigoberto Urán and Vuelta a España mountains classification winner Davide Villella lead the Cannondale-Drapac team, while Fabio Aru and Miguel Ángel López lead Astana, in what is likely to be the final race for Aru in Astana sky blue before his move to UAE Team Emirates for 2018.</p>
 						</Grid>
 						<Grid className="rm-landing-page-items" item xs={6} sm={4}>
 							<Typography className="rm-text-align-center" type="display1" color="inherit" >
 								Fast
 							</Typography>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit tempore consequuntur atque sit voluptatibus in voluptas distinctio quas est, perferendis, sunt assumenda. Eius voluptatum, magnam minus! Repellat quaerat aperiam itaque.</p>
+							<p>Adam Yates will team up with Chaves at Orica-Scott, while Philippe Gilbert and Julian Alaphilippe will support Dan Martin. Mikel Landa is part of Team Sky’s line up that includes 2016 runner-up Diego Rosa, Michal Kwiatkowski and probably Gianni Moscon. Other marquee names include Ilnur Zakarin (Katusha-Alpecin), Thibaut Pinot (FDJ), Tejay van Garderen (BMC) and Rafal Majka (Bora-Hansgrohe).</p>
 						</Grid>
 
 					</Grid>

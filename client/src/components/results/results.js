@@ -10,7 +10,13 @@ import Input from 'material-ui/Input';
 import TextField from 'material-ui/TextField';
 import Card, { CardActions, CardContent, CardHeader, CardTitle, CardText } from 'material-ui/Card';
 import API from "../../utils/API";
-import Dialog, { DialogTitle } from 'material-ui/Dialog';
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from 'material-ui/Dialog';
+import Typography from 'material-ui/Typography';
 
 
 function importAll(r) {
@@ -27,6 +33,7 @@ const styles = theme => ({
 		width: '100%',
 		maxWidth: 360,
 		background: theme.palette.background.paper,
+		flex: '1 1 auto'
 	},
 	container: {
 	    display: 'flex',
@@ -177,8 +184,11 @@ class Results extends React.Component {
 
 		return (
 			<div className={classes.root}>
-				<h4>The Ridemates search shows that people listed below have similar insterest in biking as you. </h4>
-				<p> Please select the check box on right and add a date and time to meet them. We'll email them for you</p>
+				
+				<Typography type="display1" color="inherit" >
+	            We found some riders nearby!
+	           </Typography>
+				<p>Select any number of them and we'll email them for you!</p>
 
 				<FormControlLabel
 				    control={
@@ -224,18 +234,6 @@ class Results extends React.Component {
 								}}
 							/> 
 					        
-					          {/*
-							<TextField
-								id="time"
-								name="time"
-								label="At this time"          
-								className={classes.textField}
-								value={this.state.time}
-								onChange={this.handleChange('time')}  
-								InputLabelProps={{
-								shrink: true,
-								}}
-							/>*/}
 
 					        <TextField
 					            label="Meeting place"
@@ -259,16 +257,26 @@ class Results extends React.Component {
 			    </div> 
 
 			    <Dialog open={this.state.confirmationModalOpen}>
-			        <DialogTitle>Message(s) sent! Your ridemates should respond shortly!</DialogTitle>
-			        <div>
-			          <Button raised color="primary" className={classes.button} onClick={this.dismissConfirmationModal} >Cool!</Button>
-			        </div>
+			    	<DialogTitle>Message(s) sent!</DialogTitle>
+			    	<DialogContent>
+			            <DialogContentText>
+			              Your chosen ridemate(s) should respond shortly! We will let you know whenever a rider would like to join you.
+			            </DialogContentText>
+			          </DialogContent>
+			          <DialogActions>
+			            <Button color="primary" className={classes.button} onClick={this.dismissConfirmationModal} >Cool!</Button>
+			          </DialogActions>
 			    </Dialog> 
 			    <Dialog open={this.state.errorModalOpen}>
-			        <DialogTitle>Please select a ridemate to send an email</DialogTitle>
-			        <div>
-			          <Button raised color="primary" className={classes.button} onClick={this.dismissModal} >Okay</Button>
-			        </div>
+			    	<DialogTitle>No riders were selected!</DialogTitle>
+			    	<DialogContent>
+			            <DialogContentText>
+			              Please select at least one rider for us to send them an email
+			            </DialogContentText>
+			          </DialogContent>
+			          <DialogActions>
+			            <Button color="primary" className={classes.button} onClick={this.dismissModal} >Okay</Button>
+			        </DialogActions>
 			    </Dialog> 
       		</div>
 
