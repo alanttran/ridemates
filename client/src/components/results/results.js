@@ -216,7 +216,7 @@ class Results extends React.Component {
 								).map(person => (
 
 								<ListItem key={person._id} dense button className={classes.listItem}>					 
-									<Avatar alt={`${person.firstname}`} src="http://i.pravatar.cc/100"/>
+									<Avatar alt={`${person.firstname}`} src="http://i.pravatar.cc/100/"/>
 									<ListItemText style={fontsize19} primary={`${person.firstname}  ${person.lastname}`}/>
 									<ListItemSecondaryAction>
 									   <Checkbox
