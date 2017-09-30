@@ -62,12 +62,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //enable CORS
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*')
+//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+//   next();
+// });
 
 // Routes
 // const htmlRoutes = require("./controllers/htmlController.js");
@@ -82,9 +82,9 @@ app.use((req, res, next) => {
 
 
 
-app.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
-});
+// app.get('*', function(request, response) {
+//   response.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
+// });
 
 // Start the server
 app.listen(PORT, function() {
