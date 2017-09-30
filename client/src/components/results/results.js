@@ -118,9 +118,14 @@ class Results extends React.Component {
 	    });
 	};
 
+	dismissConfirmationModal = () => {
+		this.props.history.push('/');
+		this.setState({confirmationModalOpen: false})
+	};
+
 	dismissModal = () => {
 		this.setState({confirmationModalOpen: false, errorModalOpen: false})
-	}
+	};
 
 	//backend is expecting a email Object for selected people and 
 	submitChange =() => {
@@ -146,7 +151,7 @@ class Results extends React.Component {
 			API.emailRequest(emailObject).then((response) => {
 				console.log("results checked people" + this.state.checked.length);
 				this.setState({confirmationModalOpen: true }) 
-				this.props.history.push('/');
+				
 			});
 
 		}
@@ -256,7 +261,7 @@ class Results extends React.Component {
 			    <Dialog open={this.state.confirmationModalOpen}>
 			        <DialogTitle>Message(s) sent! Your ridemates should respond shortly!</DialogTitle>
 			        <div>
-			          <Button raised color="primary" className={classes.button} onClick={this.dismissModal} >Cool!</Button>
+			          <Button raised color="primary" className={classes.button} onClick={this.dismissConfirmationModal} >Cool!</Button>
 			        </div>
 			    </Dialog> 
 			    <Dialog open={this.state.errorModalOpen}>
