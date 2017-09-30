@@ -93,7 +93,7 @@ class Main extends Component {
       //window.location = res.request.responseURL;
       // debugger;
       this.props.parent.setState({result: res.data, receivedData: true})
-      this.props.history.push('/results');
+      this.props.history.push('/results'); 
     });
     //this.props.getMatchedPeople(this.state.where, this.state.when, this.state.biketype, this.hardness);
 

@@ -80,6 +80,9 @@ class Results extends React.Component {
 			console.log(res.data._id);
 			this.setState({currentUser: res.data })
 		})
+		if(!this.props.data){
+			this.props.history.push('/');
+		}
 	}
 
 	handleToggle(value) {

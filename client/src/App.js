@@ -95,7 +95,7 @@ class App extends Component {
               history={history}
               data={this.state.result}
               />}
-          />} 
+          /> 
 
         </div>
         

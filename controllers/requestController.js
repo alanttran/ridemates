@@ -166,7 +166,8 @@ router.post('/webhooks', (req, res) => {
 			}, {
 				  $set: { 'recipients.$.responded': true,
 						  'recipients.$.responseType': choice
-				  }
+				  },
+				  $inc: { [choice]: 1 }
 			}).exec();
 		})
 		// returning the array
