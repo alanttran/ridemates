@@ -11,7 +11,7 @@ class ConfirmationPage extends Component{
 				<Typography type="display1" color="inherit" >
 		            No problem!<br/> We look forward to the <br/>next time you ride!
 		          </Typography>
-				<img className="rm-signup-page-image" src="./images/biker-03.png"/>
+				<img className="rm-signup-page-image" src="/images/biker-03.png"/>
 			</div>
 		)
 		
