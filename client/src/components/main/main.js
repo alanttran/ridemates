@@ -12,6 +12,7 @@ import { FormControl } from "material-ui/Form";
 import Select from "material-ui/Select";
 import API from "../../utils/API";
 import {  Link } from "react-router-dom";
+import Typography from 'material-ui/Typography';
 
 import "./main.css";
 
@@ -19,8 +20,9 @@ const primaryColor = "#F44336";
 
 const styles = theme => ({
   card: {
-    maxWidth: 275,
-    marginBottom: 10
+    maxWidth: 500,
+    marginBottom: 10,
+    backgroundColor: 'rgba(255,255,255,0.9)'
   },
   bullet: {
     display: "inline-block",
@@ -116,6 +118,9 @@ class Main extends Component {
       <div>
         <Card className={classes.card}>
           <CardContent>
+            <Typography type="headline" color="inherit" >
+                Where would you like to ride?
+              </Typography>
             <TextField
               required
               id="where-id"

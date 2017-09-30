@@ -32,7 +32,7 @@ class LandingPage extends Component{
 				
 				<div style={coverImage} className="rm-cover-container">
 					<Typography className="rm-cover-title" type="display3" >
-							Find Friends to ride with you! Anywhere!
+							Find mates to ride with you! Anywhere!
 					</Typography>
 					<Main
 						result={this.props.result}
