@@ -15,7 +15,7 @@ const express 				= require("express"),
 	  logger 				= require('morgan'),
 	  User					= require('./models/User'),
 	  path                  = require('path'),
-	  keys					= require('./config/keys');
+	  keys					= require('./config/prod');
 
 const app = express();
 
