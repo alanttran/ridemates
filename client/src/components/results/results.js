@@ -53,19 +53,26 @@ class Results extends React.Component {
 		super(props);
 
 		let tempMatchedPeopleIds = []
-		this.props.data.results.map(person => {tempMatchedPeopleIds.push(person._id) });
-		this.state = {
-			where: this.props.data.where,
-			matchedPeople: this.props.data.results,
-			matchedPeopleIds: tempMatchedPeopleIds,
-			checked:[],
-			message: '',
-		    time: '',
-		    address: '',
-		    currentUser: '',
-		    confirmationModalOpen: false,
-		    errorModalOpen: false
-		};	
+
+		if(!this.props.data){
+			this.props.history.push('/');
+		}
+		else{
+			this.props.data.results.map(person => {tempMatchedPeopleIds.push(person._id) });
+			this.state = {
+				where: this.props.data.where,
+				matchedPeople: this.props.data.results,
+				matchedPeopleIds: tempMatchedPeopleIds,
+				checked:[],
+				message: '',
+			    time: '',
+			    address: '',
+			    currentUser: '',
+			    confirmationModalOpen: false,
+			    errorModalOpen: false
+			};
+		}
+			
 	}
 
 	componentWillMount(){
@@ -149,7 +156,7 @@ class Results extends React.Component {
 
 	render() {
 		const classes = this.props.classes; 
-		const { all } = this.state;
+		//const { all } = this.state;
 		// console.log('props', this.props);
 		// console.log("Results ", this.props.data);
 		if(this.state.matchedPeople.length === 0) {

@@ -26,7 +26,7 @@ class LandingPage extends Component{
 	}
 	render(){
 		console.log('state', this.state)
-		if(this.state.receivedData) return <Results data={this.state.result}/>;
+		//if(this.state.receivedData) return <Results data={this.state.result}/>;
 		return(
 			<div>
 				
@@ -34,7 +34,12 @@ class LandingPage extends Component{
 					<Typography className="rm-cover-title" type="display3" >
 							Find Friends to ride with you! Anywhere!
 					</Typography>
-					<Main peopleMatched = { this.props.getMatchedPeople } parent = {this}></Main>
+					<Main
+						result={this.props.result}
+						history={this.props.history} 
+						peopleMatched = { this.props.getMatchedPeople } 
+						parent = {this.props.parent}>
+					</Main>
 				</div>
 				<div className="rm-landing-page-item-container">
 

@@ -22,7 +22,8 @@ class App extends Component {
 
   state = {
     matchedPeople: [],
-    isLoggedIn: false
+    isLoggedIn: false,
+    result: []
   }
 
   
@@ -72,7 +73,11 @@ class App extends Component {
             </Toolbar>
           </AppBar>
           
-          <Route exact path="/" component={LandingPage} getMatchedPeople = {this.getMatchedPeople}/>
+          <Route exact path="/" 
+            render={({ history }) => <LandingPage parent={this} history={history}
+            getMatchedPeople = {this.getMatchedPeople}/>
+          } 
+          />
           <Route exact path="/login" 
             render={({ history }) => <LoginPage parent={this} history={history} />} 
           />
@@ -84,7 +89,14 @@ class App extends Component {
           />
           <Route exact path="/confirmation" component={EmailConfirmation} />
           <Route exact path="/refusal" component={EmailRefusal} />
-          <Route exact path="/results/:where/:biketype/:difficulty" component={ResultsPage} matchedPeople = { this.state.matchedPeople} />
+          <Route exact path="/results" 
+           render={({ history }) => <ResultsPage 
+              parent={this} 
+              history={history}
+              data={this.state.result}
+              />}
+          />} 
+
         </div>
         
       </Router> 

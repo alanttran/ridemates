@@ -64,15 +64,6 @@ class Main extends Component {
 
   submitChange = (event, where, biketype, difficulty) => {
     event.preventDefault();
-    // sessionStorage.setItem("where":where);
-    // sessionStorage.setItem("when":when);
-    // sessionStorage.setItem("biketype":biketype);
-    // sessionStorage.setItem("difficulty":difficulty);
-
-    //API.request().then( (res) => {
-
-    //window.location = res.request.responseURL;
-    //});
 
     console.log("in signup submitchange");
     const searchObj = this.state;
@@ -102,6 +93,7 @@ class Main extends Component {
       //window.location = res.request.responseURL;
       // debugger;
       this.props.parent.setState({result: res.data, receivedData: true})
+      this.props.history.push('/results');
     });
     //this.props.getMatchedPeople(this.state.where, this.state.when, this.state.biketype, this.hardness);
 
