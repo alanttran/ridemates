@@ -87,8 +87,8 @@ class App extends Component {
           <Route exact path="/profile" 
             render={({ history }) => <ProfilePage parent={this} history={history} />}
           />
-          <Route exact path="/confirmation" component={EmailConfirmation} />
-          <Route exact path="/refusal" component={EmailRefusal} />
+          <Route exact path="/api/request/:id/yes" component={EmailConfirmation} />
+          <Route exact path="/api/request/:id/no" component={EmailRefusal} />
           <Route exact path="/results" 
            render={({ history }) => <ResultsPage 
               parent={this} 
@@ -98,7 +98,7 @@ class App extends Component {
           /> 
 
         </div>
-        
+
 
         
       </Router> 

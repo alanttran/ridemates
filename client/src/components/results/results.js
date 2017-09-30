@@ -146,6 +146,7 @@ class Results extends React.Component {
 			API.emailRequest(emailObject).then((response) => {
 				console.log("results checked people" + this.state.checked.length);
 				this.setState({confirmationModalOpen: true }) 
+				this.props.history.push('/');
 			});
 
 		}
@@ -253,7 +254,7 @@ class Results extends React.Component {
 			    </div> 
 
 			    <Dialog open={this.state.confirmationModalOpen}>
-			        <DialogTitle>Message Sent! Your ridemates should respond shortly!</DialogTitle>
+			        <DialogTitle>Message(s) sent! Your ridemates should respond shortly!</DialogTitle>
 			        <div>
 			          <Button raised color="primary" className={classes.button} onClick={this.dismissModal} >Cool!</Button>
 			        </div>
