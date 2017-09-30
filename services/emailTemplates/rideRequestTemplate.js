@@ -23,10 +23,10 @@ module.exports = (email) => {
 					<p>Please answer:</p>
 					<p>${email.body}</p>
 					<div>
-						<a href="${keys.redirectDomain}/api/request/${email.id}/yes">Yes</a>
+						<a href="https://${keys.redirectDomain}/api/request/${email.id}/yes">Yes</a>
 					</div>
 					<div>
-						<a href="${keys.redirectDomain}/api/request/${email.id}/no">No</a>
+						<a href="https://${keys.redirectDomain}/api/request/${email.id}/no">No</a>
 					</div>
 				</div>
 			</body>
