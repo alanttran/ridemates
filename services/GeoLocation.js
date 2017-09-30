@@ -5,7 +5,8 @@
 
 const request 	= require('request');
 const haversine = require('haversine');
-const keys		= require('../config/keys');
+const keys		= require('../config/prod');
+//const keys = require('../config/keys');
 
 
 // Google long. lat. coordinates GEOCODING API
