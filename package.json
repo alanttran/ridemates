@@ -16,7 +16,8 @@
     "mydev": "concurrently --kill-others \"npm run start-server\" \"npm run webhook\"",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "start-server": "nodemon server.js"
+    "start-server": "nodemon server.js",
+    "start": "node index.js"
   },
   "author": "Fabio Aiello, Waqas Alsubayee, Alan Tran, Jaya Arasalike",
   "license": "ISC",
