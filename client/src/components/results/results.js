@@ -18,6 +18,8 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
 
+import './results.css';
+
 
 function importAll(r) {
 	console.log(r)
@@ -53,6 +55,14 @@ const styles = theme => ({
 	    marginBottom: 10,
 	  },
 });
+
+let bigButton = {
+	width: '100%'
+}
+
+let fontsize19 = {
+	fontSize: '19px'
+}
 
 //matchedPeople is array of objects, matchedPeopleIds is array of their ids & checked is array of checked people ids
 class Results extends React.Component {
@@ -183,79 +193,73 @@ class Results extends React.Component {
 	    var isAllChecked = this.state.checked.length === this.state.matchedPeopleIds.length;		
 
 		return (
-			<div className={classes.root}>
-				
-				<Typography type="display1" color="inherit" >
-	            We found some riders nearby!
-	           </Typography>
-				<p>Select any number of them and we'll email them for you!</p>
+			<div>
+				<div className="rm-results-layout-container">
+					<div>
+						<Typography type="display1" color="inherit" >
+			            	We found some riders nearby!
+			           	</Typography>
+						<p>Select any number of them and we'll email them for you!</p>
 
-				<FormControlLabel
-				    control={
-						<Checkbox
-							onClick={() => this.handleAllToggle({isAllChecked})}
-							checked={isAllChecked}
+						<FormControlLabel
+						    control={
+								<Checkbox
+									onClick={() => this.handleAllToggle({isAllChecked})}
+									checked={isAllChecked}
+								/>
+						    }
+						    label="Select All"
 						/>
-				    }
-				    label="Select All"
-				/>
-				<List>
-					{	this.state.matchedPeople.filter(person => 
-							 person._id != this.state.currentUser._id
-						).map(person => (
+						<List className="rm-results-list">
+							{	this.state.matchedPeople.filter(person => 
+									 person._id != this.state.currentUser._id
+								).map(person => (
 
-						<ListItem key={person._id} dense button className={classes.listItem}>					 
-							<Avatar alt={`${person.firstname}`} src= {`${person.imageUrl}` }/>
-							<ListItemText primary={`${person.firstname}  ${person.lastname}`}/>
-							<ListItemSecondaryAction>
-							   <Checkbox
-							    onClick={() => this.handleToggle(person._id)}
-							    checked={this.state.checked.includes(person._id)}
-							/>
-							</ListItemSecondaryAction>
-						</ListItem>
-						
-					))}
-				</List>
-			
-				<div>
-					<Card className={classes.card}>
-						<CardContent>
-				      			        
-							<TextField
-								value={`Hello! Would you like to join me on a bike ride at ${this.state.where}?`}
-								multiline
-								className={classes.input}
-								disabled
-								id="message"
-								name="message"
-								inputProps={{
-								  'aria-label': 'Description',
-								}}
-							/> 
+								<ListItem key={person._id} dense button className={classes.listItem}>					 
+									<Avatar alt={`${person.firstname}`} src="http://i.pravatar.cc/100"/>
+									<ListItemText style={fontsize19} primary={`${person.firstname}  ${person.lastname}`}/>
+									<ListItemSecondaryAction>
+									   <Checkbox
+									    onClick={() => this.handleToggle(person._id)}
+									    checked={this.state.checked.includes(person._id)}
+									/>
+									</ListItemSecondaryAction>
+								</ListItem>
+								
+							))}
+						</List>
+					</div>
+				
+					<div className="rm-results-right-panel">
+						<Card className={classes.card}>
+							<CardContent>
+					      			        
+								<p>
+									Hello! I would like to ride with you. If you would like to join, please meet me at...
+								</p>
+						        
+
+						        <TextField
+						            label="Meeting place"
+						            placeholder="eg. Starbucks on 1st"
+						            id="message-addr"
+						            name="address"
+						            multiline
+						            className={classes.textField}
+						            value={this.state.username}
+						            onChange={this.handleChange('address')}  
+						            margin="normal"
+						        />
+					        </CardContent>
 					        
+					        <CardActions>
+						        <Button style={bigButton} raised color="primary" className={classes.button} onClick={this.submitChange} id="emailButton">Message</Button>
+					        </CardActions>
+				      
+				      </Card>
 
-					        <TextField
-					            label="Meeting place"
-					            placeholder="Enter time and address"
-					            id="message-addr"
-					            name="address"
-					            multiline
-					            className={classes.textField}
-					            value={this.state.username}
-					            onChange={this.handleChange('address')}  
-					            margin="normal"
-					        />
-				        </CardContent>
-				        
-				        <CardActions>
-					        <Button raised color="primary" className={classes.button} onClick={this.submitChange} id="emailButton">Message</Button>
-				        </CardActions>
-			      
-			      </Card>
-
-			    </div> 
-
+				    </div> 
+			    </div>
 			    <Dialog open={this.state.confirmationModalOpen}>
 			    	<DialogTitle>Message(s) sent!</DialogTitle>
 			    	<DialogContent>

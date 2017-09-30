@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Typography from 'material-ui/Typography';
 import './confirmation.css';
-let imgUrl = './images/bike-background-02.png';
+let imgUrl = '/images/bike-background-02.png';
 
 let bgImage = {
   backgroundImage: 'url(' + imgUrl + ')'

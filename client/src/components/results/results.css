@@ -1,0 +1,10 @@
+.rm-results-layout-container{
+	display: flex;
+}
+.rm-results-right-panel{
+	margin-left: 50px;
+}
+.rm-results-list{
+	border: 1px solid #bebebc;
+	border-radius: 5px;
+}

@@ -15,15 +15,12 @@ class ResultsPage extends Component{
 		console.log(this.props);
 		return(
 			<div style={bgImage} className="rm-signup-page-container">
-				<div className="rm-profile-left-panel">
 					<Results 
-				history={this.props.history} 
-				parent={this.props.parent}
-				data={this.props.data}
-				>
-			</Results>
-				</div>
-				<img className="" src="./images/biker-04.png"/>
+						history={this.props.history} 
+						parent={this.props.parent}
+						data={this.props.data}
+						>
+					</Results>
 			</div>
 			
 			
