@@ -61,31 +61,26 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// enable CORS
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*')
-//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-//   next();
-// });
+//enable CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  next();
+});
 
 // Routes
 // const htmlRoutes = require("./controllers/htmlController.js");
-const authRoutes = require("./controllers/authController.js");
-const requestRoutes = require("./controllers/requestController.js");
-const resultsRoutes = require("./controllers/resultsController.js");
+// const authRoutes = require("./controllers/authController.js");
+// const requestRoutes = require("./controllers/requestController.js");
+// const resultsRoutes = require("./controllers/resultsController.js");
 
 
-app.use("/api", authRoutes);
-app.use("/api/request", requestRoutes);
-app.use("/api/results", resultsRoutes);
+// app.use("/api", authRoutes);
+// app.use("/api/request", requestRoutes);
+// app.use("/api/results", resultsRoutes);
 
-// to be taken out at the end of primary tests ++++++++++++++++++++++++++++++++++++++++++++++++
-app.get('/api/test', (req, res) => {
-	console.log('waqas says -haqaqi-')
-	console.log('test: ', req.body)
-	res.json('test successful');
-});
+
 
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
