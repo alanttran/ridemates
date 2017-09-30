@@ -71,9 +71,9 @@ app.use((req, res, next) => {
 
 // Routes
 const htmlRoutes = require("./controllers/htmlController.js");
-const authRoutes = require("./controllers/authController.js");
-// const requestRoutes = require("./controllers/requestController.js");
-// const resultsRoutes = require("./controllers/resultsController.js");
+//const authRoutes = require("./controllers/authController.js");
+const requestRoutes = require("./controllers/requestController.js");
+const resultsRoutes = require("./controllers/resultsController.js");
 
 
 // app.use("/api", authRoutes);
