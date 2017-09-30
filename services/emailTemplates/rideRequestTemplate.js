@@ -4,7 +4,7 @@
 //                    ride request email template        
 // ============================================================================
 
-const keys = require('../../config/keys');
+const keys = require('../../config/prod');
 
 // todo: REPLACED line 23 with:   ++++++++++++++++++++++++++++++++++++++
 // <a href="${keys.redirectDomain}/api/request/thanks">Yes</a>
