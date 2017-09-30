@@ -8,7 +8,8 @@ const sendgrid = require('sendgrid');
 // const helper = sendgrid.mail;
 // https://github.com/sendgrid/sendgrid-nodejs
 const mailHelper = sendgrid.mail;
-const keys = require('../config/keys');
+//const keys = require('../config/keys');
+const keys = require('../config/prod');
 
 // sgMail.setApiKey(keys.sendgrid_KEY);
 

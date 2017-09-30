@@ -9,8 +9,7 @@ const mongoose				= require('mongoose'),
 	  LocalStrategy 		= require('passport-local').Strategy,
 	  passport				= require('passport'),
 	  User 					= require('../models/User'),
-	  getCoordinates 		= require('../services/GeoLocation'),
-	  geocoder = require("geocoder");
+	  geocoder 				= require("geocoder");
 
 
 passport.serializeUser(User.serializeUser());
